@@ -293,10 +293,54 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.15);
             max-width: 600px;
         }
+        .kenya-flag-css {
+    width: 32px;
+    height: 20px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* top black stripe */
+.kenya-flag-css::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 33.33%;
+    width: 100%;
+    background: #000000;
+}
+
+/* middle red stripe */
+.kenya-flag-css::after {
+    content: "";
+    position: absolute;
+    top: 33.33%;
+    left: 0;
+    height: 33.33%;
+    width: 100%;
+    background: #BB0000;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+/* bottom green stripe (base layer) */
+.kenya-flag-css {
+    background: #006600;
+}
+
+/* white fimbriations effect */
+.kenya-flag-css {
+    box-shadow:
+        inset 0 6.6px 0 0 #000000,
+        inset 0 13.2px 0 0 #BB0000;
+}
 
         /* News Ticker */
         .ticker-bar {
-            background: var(--tenp-dark-slate);
+            background: var(--tenp-imperial);
             color: var(--tenp-marble);
             height: 44px;
             overflow: hidden;
@@ -326,7 +370,6 @@
             padding-right: 60px;
             font-size: 0.85rem;
         }
-
         /* Academic Cards */
         .academic-board-card {
             background: var(--tenp-marble);
@@ -340,9 +383,9 @@
         }
 
         /* Footer */
-        .tsinghua-footer {
-            background-color: #0F172A !important;
-            color: #94A3B8;
+      .tsinghua-footer {
+            background-color: var(--tenp-imperial) !important;
+            color: #E5E7EB;
             font-size: 0.85rem;
         }
         .tsinghua-footer h5 {
@@ -353,7 +396,7 @@
             margin-bottom: 1.25rem;
         }
         .footer-link {
-            color: #94A3B8;
+            color: #E5E7EB;
             text-decoration: none;
             transition: color 0.2s ease, transform 0.2s ease;
             display: inline-block;
@@ -376,13 +419,17 @@
     <div class="tsinghua-utility-bar text-white d-none d-lg-block">
         <div class="container-fluid px-4 py-1 d-flex justify-content-between align-items-center">
             <div class="small">
-                <span class="me-3"><i class="fa-regular fa-envelope me-1 text-warning"></i>info@eldoretpolytechnic.ac.ke</span>
-                <span class="me-3"><i class="fa-solid fa-phone me-1 text-warning"></i>+254 53 2062503</span>
+                <span class="me-3"><i class="fa-regular fa-envelope me-1 text-warning"></i>info@tenp.ac.ke/inguiries@tenp.ac.ke</span>
+                <span class="me-3"><i class="fa-solid fa-phone me-1 text-warning"></i>254 0797 222 666</span>
                 <span><i class="fa-solid fa-location-dot me-1 text-warning"></i>Eldoret-Kisumu Road, Kenya</span>
             </div>
-            <div>
-                <span class="badge rounded-0 bg-transparent text-white border border-light border-opacity-25 px-2 py-1 text-uppercase fw-bold" style="font-size:0.6rem;">ISO 9001:2015 Certified</span>
-            </div>
+            <div class="d-flex align-items-center">
+    <div class="kenya-flag-css me-2"></div>
+
+    <span class="badge rounded-0 bg-transparent text-white border border-light border-opacity-25 px-2 py-1 text-uppercase fw-bold" style="font-size:0.6rem;">
+        ISO 9001:2015 Certified
+    </span>
+</div>
         </div>
     </div>
 
@@ -404,7 +451,7 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top premium-nav p-0 shadow-sm" id="mainNav">
         <div class="container-fluid px-4">
             <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
-                <img class="img-fluid me-2" src="{% static 'img/logo.png' %}" alt="TENP" style="height: 42px; width: auto;">
+                <img class="img-fluid me-2" src="{% static 'img/logo.jpeg' %}" alt="TENP" style="height: 42px; width: auto;">
                 <div>
                     <h4 class="m-0 institution-crest-text" style="font-size: 1.2rem;">TENP</h4>
                     <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.55rem; letter-spacing: 0.5px;">Academia</span>
@@ -494,7 +541,7 @@
 
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="/portal/student-login/" class="btn rounded-0 text-white text-uppercase fw-bold border-0 portal-entry-btn"><i class="fa-solid fa-lock me-1 text-warning"></i>Portal Entry</a>
+                {% comment %} <a href="/portal/student-login/" class="btn rounded-0 text-white text-uppercase fw-bold border-0 portal-entry-btn"><i class="fa-solid fa-lock me-1 text-warning"></i>Portal Entry</a> {% endcomment %}
             </div>
         </div>
     </nav>
@@ -522,7 +569,7 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/awards.webp' %}');">
+                <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/stud.jpeg' %}');">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(15, 23, 42, 0.4);">
                         <div class="container px-5">
                             <div class="row">
@@ -542,7 +589,7 @@
                     </div>
                 </div>
 
-                <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/MADM.jpeg' %}');">
+                <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/caf.jpeg' %}');">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(15, 23, 42, 0.4);">
                         <div class="container px-5">
                             <div class="row">
@@ -561,8 +608,9 @@
                         </div>
                     </div>
                 </div>
+                 
 
-                <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/news.jpg' %}');">
+                <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/bg.jpeg' %}');">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(15, 23, 42, 0.4);">
                         <div class="container px-5">
                             <div class="row">
@@ -590,6 +638,25 @@
                                                 <i class="fa-solid fa-circle-check me-3 text-success fs-5" style="color: var(--tenp-imperial) !important;"></i>
                                                 <span class="fw-bold text-dark fs-6">Teamwork</span>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="owl-carousel-item hero-premium-viewport position-relative" style="background-image: url('{% static 'img/join.jpeg' %}');">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(15, 23, 42, 0.4);">
+                        <div class="container px-5">
+                            <div class="row">
+                                <div class="col-12 col-lg-8">
+                                    <div class="hero-editorial-card animated slideInLeft rounded-0" style="border-top: 6px solid var(--tenp-maroon) !important;">
+                                        <span class="text-uppercase tracking-wider fw-bold small d-block mb-2" style="color: var(--tenp-gold) !important; letter-spacing: 2px;"><i class="fa-solid fa-eye me-2"></i> the Eldoret National polytechnic</span>
+                                        <h1 class="display-6 text-dark fw-bold mb-3" style="line-height: 1.25; color: var(--tenp-dark-slate) !important; font-size: 2.3rem;">
+                                            Join A Centerof Excellence in technological advancement.
+                                        </h1>
+                                        <div class="d-flex gap-3 mt-4">
+                                            <a href="about.html" class="btn text-white rounded-0 px-4 py-3 border-0 text-uppercase fw-bold" style="background-color: var(--tenp-maroon); font-size: 0.75rem;">Join us Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -727,15 +794,16 @@
     <div class="container-fluid px-5 py-5 border-top border-bottom bg-light">
         <div class="row g-0 text-center">
             <div class="col-lg-3 col-sm-6 py-4 stat-showcase-box wow fadeIn" data-wow-delay="0.1s">
-                <div class="stat-number">12,500+</div>
+                <div class="stat-number">0</div>
                 <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Active Trainees</div>
             </div>
             <div class="col-lg-3 col-sm-6 py-4 stat-showcase-box wow fadeIn" data-wow-delay="0.3s">
-                <div class="stat-number">450+</div>
+                <div class="stat-number">0</div>
                 <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Technical Instructors</div>
             </div>
             <div class="col-lg-3 col-sm-6 py-4 stat-showcase-box wow fadeIn" data-wow-delay="0.5s">
-                <div class="stat-number">85+</div>
+                <div class="stat-number">
+                    0+</div>
                 <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Accredited Syllabuses</div>
             </div>
             <div class="col-lg-3 col-sm-6 py-4 stat-showcase-box wow fadeIn" data-wow-delay="0.7s">
