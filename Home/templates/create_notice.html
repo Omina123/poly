@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publish Update - Eldopoly Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/configure.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --maroon-primary: #800000;
+            --maroon-dark: #5c0000;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .bg-maroon {
+            background-color: var(--maroon-primary);
+        }
+
+        .text-maroon {
+            color: var(--maroon-primary);
+        }
+
+        .btn-maroon {
+            background-color: var(--maroon-primary);
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-maroon:hover {
+            background-color: var(--maroon-dark);
+            color: white;
+        }
+
+        .form-card {
+            border: none;
+            border-radius: 12px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--maroon-primary);
+            box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.15);
+        }
+
+        .preview-box {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-maroon shadow-sm mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <i class="fa-solid fa-layer-group me-2"></i>ELDOPOLY PORTAL
+            </a>
+            <div class="ms-auto">
+                <a href="{% url 'home' %}" class="btn btn-outline-light btn-sm px-3">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-auto">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                
+                <div class="card form-card shadow-sm p-4 p-md-5 bg-white">
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                        <div class="p-3 bg-maroon text-white rounded-3 me-3">
+                            <i class="fa-solid fa-bullhorn fa-2x"></i>
+                        </div>
+                        <div>
+                            <h2 class="fw-bold text-dark mb-1">Create Notice Board Entry</h2>
+                            <p class="text-muted mb-0">Publish an institutional memo, campus update, or critical announcement to the main feed matrix.</p>
+                        </div>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger shadow-sm border-0" role="alert">
+                                {% for error in form.non_field_errors %}
+                                    <div class="small fw-bold"><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="{{ form.category.id_for_label }}" class="form-label fw-bold text-secondary">
+                                    <i class="fa-solid fa-filter me-1"></i> Feed Target Category
+                                </label>
+                                {{ form.category }}
+                                {% if form.category.help_text %}
+                                    <div class="form-text text-muted small">{{ form.category.help_text }}</div>
+                                {% endif %}
+                                {% for error in form.category.errors %}
+                                    <div class="text-danger small mt-1 fw-semibold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="{{ form.reference_number.id_for_label }}" class="form-label fw-bold text-secondary">
+                                    <i class="fa-solid fa-hashtag me-1"></i> Catalog / Reference Number
+                                </label>
+                                {{ form.reference_number }}
+                                {% if form.reference_number.help_text %}
+                                    <div class="form-text text-muted small">{{ form.reference_number.help_text }}</div>
+                                {% endif %}
+                                {% for error in form.reference_number.errors %}
+                                    <div class="text-danger small mt-1 fw-semibold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.title.id_for_label }}" class="form-label fw-bold text-secondary">
+                                    <i class="fa-solid fa-heading me-1"></i> Notice Wrapper Title
+                                </label>
+                                {{ form.title }}
+                                {% if form.title.help_text %}
+                                    <div class="form-text text-muted small">{{ form.title.help_text }}</div>
+                                {% endif %}
+                                {% for error in form.title.errors %}
+                                    <div class="text-danger small mt-1 fw-semibold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.content.id_for_label }}" class="form-label fw-bold text-secondary">
+                                    <i class="fa-solid fa-paragraph me-1"></i> Detailed Informational Context Payload
+                                </label>
+                                {{ form.content }}
+                                {% if form.content.help_text %}
+                                    <div class="form-text text-muted small">{{ form.content.help_text }}</div>
+                                {% endif %}
+                                {% for error in form.content.errors %}
+                                    <div class="text-danger small mt-1 fw-semibold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="p-3 preview-box h-100">
+                                    <label for="{{ form.file_attachment.id_for_label }}" class="form-label fw-bold text-secondary">
+                                        <i class="fa-solid fa-file-pdf text-danger me-1"></i> Document Attachment (.pdf, .docx)
+                                    </label>
+                                    {{ form.file_attachment }}
+                                    {% if form.file_attachment.help_text %}
+                                        <div class="form-text text-muted small mt-2">{{ form.file_attachment.help_text }}</div>
+                                    {% endif %}
+                                    {% for error in form.file_attachment.errors %}
+                                        <div class="text-danger small mt-1 fw-semibold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="p-3 preview-box h-100">
+                                    <label for="{{ form.image.id_for_label }}" class="form-label fw-bold text-secondary">
+                                        <i class="fa-solid fa-image text-success me-1"></i> Display Matrix Image Asset
+                                    </label>
+                                    {{ form.image }}
+                                    {% if form.image.help_text %}
+                                        <div class="form-text text-muted small mt-2">{{ form.image.help_text }}</div>
+                                    {% endif %}
+                                    {% for error in form.image.errors %}
+                                        <div class="text-danger small mt-1 fw-semibold"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 pt-3 border-top">
+                            <div class="col-md-6 order-2 order-md-1 mt-2 mt-md-0">
+                                <a href="{% url 'home' %}" class="btn btn-light w-100 py-2.5 fw-semibold text-secondary border">
+                                    Cancel & Terminate
+                                </a>
+                            </div>
+                            <div class="col-md-6 order-1 order-md-2">
+                                <button type="submit" class="btn btn-maroon w-100 py-2.5 fw-bold shadow-sm">
+                                    <i class="fa-solid fa-paper-plane me-2"></i> Commit & Publish Notice
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white-50 text-center py-3 mt-auto border-top border-secondary border-opacity-20">
+        <div class="container small">
+            &copy; 2026 Eldopoly Institutional Administration Module. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

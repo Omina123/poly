@@ -1,0 +1,503 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Eldoret National Polytechnic | TENP Campus Portal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Eldoret National Polytechnic, TENP, TVET Kenya, staff leave, student portal" name="keywords">
+    <meta content="Welcome to the main digital gateway for The Eldoret National Polytechnic." name="description">
+
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+        :root {
+            --tenp-green: #004B23;      /* Deep Institutional Navy Blue/Green */
+            --tenp-gold: #FFC300;       /* Golden Yellow Accent */
+            --tenp-maroon: #660000;     /* Deep Accent Maroon */
+            --tenp-light-bg: #F8F9FA;   /* Soft Background Tints */
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #333333;
+            overflow-x: hidden;
+        }
+
+        /* Branding Colors Map */
+        .text-primary { color: var(--tenp-green) !important; }
+        .text-warning { color: var(--tenp-gold) !important; }
+        .text-maroon { color: var(--tenp-maroon) !important; }
+        
+        .bg-primary { background-color: var(--tenp-green) !important; }
+        .bg-warning { background-color: var(--tenp-gold) !important; }
+        .bg-maroon { background-color: var(--tenp-maroon) !important; }
+        .bg-light-custom { background-color: var(--tenp-light-bg) !important; }
+
+        .section-title::after { background: var(--tenp-gold) !important; }
+
+        /* Button Configuration adjustments */
+        .btn-tenp-primary {
+            background-color: var(--tenp-maroon) !important;
+            border-color: var(--tenp-maroon) !important;
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        .btn-tenp-primary:hover {
+            background-color: var(--tenp-green) !important;
+            border-color: var(--tenp-green) !important;
+            color: #ffffff !important;
+        }
+
+        .btn-warning-custom {
+            background-color: var(--tenp-gold) !important;
+            border-color: var(--tenp-gold) !important;
+            color: #000000 !important;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .btn-warning-custom:hover {
+            background-color: var(--tenp-maroon) !important;
+            border-color: var(--tenp-maroon) !important;
+            color: #ffffff !important;
+        }
+
+        /* Pure CSS Multilevel Dropdown Engine */
+        .dropdown-submenu { position: relative; }
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--tenp-gold) !important;
+        }
+        .dropdown-submenu:hover .dropdown-menu { display: block; }
+
+        /* Live News Ticker Layout Setup */
+        .ticker-wrapper {
+            background: var(--tenp-maroon);
+            color: #ffffff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 4px solid var(--tenp-gold);
+            display: flex;
+            align-items: center;
+        }
+        .ticker-heading {
+            background: var(--tenp-green);
+            color: var(--tenp-gold);
+            font-weight: 800;
+            padding: 12px 24px;
+            z-index: 15;
+            box-shadow: 4px 0 8px rgba(0,0,0,0.3);
+        }
+        .ticker-text-moving {
+            display: inline-block;
+            padding-left: 100%;
+            animation: moveTicker 28s linear infinite;
+        }
+        @keyframes moveTicker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        .ticker-text-moving span {
+            display: inline-block;
+            padding-right: 60px;
+            font-size: 0.95rem;
+        }
+
+        /* Notice Board Elements Formatting */
+        .notice-card {
+            border-left: 4px solid var(--tenp-green);
+            background: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .notice-card:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+        }
+        .notice-card.memo-type { border-left-color: var(--tenp-maroon); }
+        .notice-card.announcement-type { border-left-color: var(--tenp-gold); }
+
+        /* Typography Slider Block Structure (No Raw Background Overlay Masks) */
+        .carousel-typography-block {
+            padding: 40px;
+            border-radius: 4px;
+            border-top: 5px solid var(--tenp-gold);
+        }
+        .carousel-dark-text-block { background: rgba(0, 75, 35, 0.9); }
+        .carousel-maroon-text-block { background: rgba(102, 0, 0, 0.9); }
+
+        .service-item:hover { background: var(--tenp-green) !important; }
+        .service-item:hover i, .service-item:hover h5, .service-item:hover p { color: #ffffff !important; }
+
+        /* CRITICAL: ANTI-SPINNER LOCK ENGINE OVERRIDE */
+        #spinner:not(.show) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-light .navbar-nav .nav-link { padding: 12px 20px; }
+            .ticker-heading { padding: 8px 16px; font-size: 0.85rem; }
+            .dropdown-submenu .dropdown-menu {
+                position: static;
+                left: 0;
+                top: 0;
+                margin-left: 15px;
+                display: block;
+                box-shadow: none;
+                border-left: 2px solid var(--tenp-green) !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading Portal Infrastructure...</span>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-primary text-white d-none d-lg-block py-2 px-5">
+        <div class="row">
+            <div class="col-md-7">
+                <small class="me-3"><i class="fa fa-envelope me-2 text-warning"></i>info@eldoretpolytechnic.ac.ke</small>
+                <small class="me-3"><i class="fa fa-phone-alt me-2 text-warning"></i>+254 53 2062503 / 0712345678</small>
+                <small><i class="fa fa-map-marker-alt me-2 text-warning"></i>Along Eldoret-Kisumu Road, Kenya</small>
+            </div>
+            <div class="col-md-5 text-end">
+                <span class="badge bg-maroon text-white px-3 py-1 text-uppercase">ISO 9001:2015 Certified Hub</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-light py-2 px-4 px-lg-5 border-bottom">
+        <div class="row align-items-center">
+            <div class="col-md-4 col-12 mb-2 mb-md-0">
+                <span class="small text-muted fw-bold">Instant Gateway Access Matrix:</span>
+            </div>
+            <div class="col-md-8 col-12 text-end">
+                <a href="/portal/student-login/" class="btn btn-sm btn-outline-dark me-2 px-3"><i class="fa fa-user-graduate me-2 text-primary"></i>Student ERP</a>
+                <a href="/portal/staff-login/" class="btn btn-sm btn-outline-dark me-2 px-3"><i class="fa fa-user-tie me-2 text-maroon"></i>Staff ERP</a>
+                <a href="/portal/staff-leave/" class="btn btn-sm btn-outline-dark px-3"><i class="fa fa-calendar-alt me-2 text-warning"></i>Staff Leave System</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img class="img-fluid me-3" src="{% static 'img/logo.png' %}" alt="TENP Institutional Crest" style="height: 65px; width: auto; max-height: 70px;">
+            <div>
+                <h3 class="m-0 text-primary font-weight-bold" style="letter-spacing: -1px;">TENP CAMPUS</h3>
+                <small class="text-muted d-block text-uppercase font-weight-bold" style="font-size: 0.65rem; letter-spacing: 0.5px;">The Eldoret National Polytechnic</small>
+            </div>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About Us</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Academic Depts</a>
+                    <div class="dropdown-menu fade-down m-0 shadow border-0">
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Engineering Divisions</a>
+                            <div class="dropdown-menu border-0 shadow-sm">
+                                <a href="dept_eng_civil.html" class="dropdown-item">Building & Civil Engineering</a>
+                                <a href="dept_eng_electrical.html" class="dropdown-item">Electrical & Electronics</a>
+                                <a href="dept_eng_mechanical.html" class="dropdown-item">Mechanical & Automotive</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Computing & Sciences</a>
+                            <div class="dropdown-menu border-0 shadow-sm">
+                                <a href="dept_cs.html" class="dropdown-item">Computer Studies & ICT Hub</a>
+                                <a href="dept_medical.html" class="dropdown-item">Medical & Lab Sciences</a>
+                                <a href="dept_applied.html" class="dropdown-item">Applied Chemical Sciences</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-submenu">
+                            <a class="dropdown-item dropdown-toggle" href="#">Commerce & Production</a>
+                            <div class="dropdown-menu border-0 shadow-sm">
+                                <a href="dept_biz.html" class="dropdown-item">Business & Accounting Systems</a>
+                                <a href="dept_agri.html" class="dropdown-item">Agriculture & Environmental Research</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admissions Hub</a>
+                    <div class="dropdown-menu fade-down m-0 shadow border-0">
+                        <a href="apply_online.html" class="dropdown-item">Online Registration Module Form</a>
+                        <a href="kuccps_list.html" class="dropdown-item">KUCCPS Placements Requirements</a>
+                        <a href="fees.html" class="dropdown-item">Fee Structure Ledgers</a>
+                        <a href="letters.html" class="dropdown-item">Admission Letters Hub</a>
+                        <a href="helb.html" class="dropdown-item">HELB & Bursary Funding Allocation</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Student Life</a>
+                    <div class="dropdown-menu fade-down m-0 shadow border-0">
+                        <a href="hostels.html" class="dropdown-item">Hostel Accommodation Systems</a>
+                        <a href="sports.html" class="dropdown-item">Sports Athletics & Games Hub</a>
+                        <a href="union.html" class="dropdown-item">Student Union Council (TENPSO)</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="nav-item nav-link">Contact Desk</a>
+            </div>
+            <a href="/portal/student-login/" class="btn btn-tenp-primary py-4 px-lg-5 d-none d-lg-block rounded-0 border-0">ERP Student Portal<i class="fa fa-lock ms-3"></i></a>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0 mb-5">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="{% static 'img/awards.webp' %}" alt="TENP Campus Infrastructure Main Block">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0,0,0,0.55);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-10 col-lg-8">
+                                <div class="carousel-typography-block carousel-dark-text-block text-white animated slideInLeft">
+                                    <h5 class="text-uppercase mb-3 animated slideInDown text-warning fw-bold" style="letter-spacing: 2px;">SKILLED FOR THE TECHNOLOGICAL FRONTIER</h5>
+                                    <h1 class="display-3 text-white animated slideInDown font-weight-bold">Producing Globally Competent Innovators</h1>
+                                    <p class="fs-5 text-white-50 mb-4 pb-2">To provide high quality technical, vocational, and entrepreneurial training, research, and innovation that produces globally competitive manpower for industrial advancement blueprints.</p>
+                                    <a href="apply_online.html" class="btn btn-warning-custom py-md-3 px-md-5 me-3 animated slideInLeft">Apply Online Intake</a>
+                                    <a href="about.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Core Philosophy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="{% static 'img/games.jpeg' %}" alt="Technical Workshop Components at TENP">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0,0,0,0.55);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-10 col-lg-8">
+                                <div class="carousel-typography-block carousel-maroon-text-block text-white animated slideInLeft">
+                                    <h5 class="text-uppercase mb-3 animated slideInDown text-warning fw-bold" style="letter-spacing: 2px;">ISO 9001:2015 CERTIFIED INSTITUTION</h5>
+                                    <h1 class="display-3 text-white animated slideInDown font-weight-bold">A Global Center of Technological Prowess</h1>
+                                    <p class="fs-5 text-white-50 mb-4 pb-2">To be a premier national polytechnic and a global center of excellence in science, technology, innovation, and technical hands-on vocational skills development blueprints.</p>
+                                    <a href="courses.html" class="btn btn-warning-custom py-md-3 px-md-5 me-3 animated slideInLeft">Explore Syllabuses</a>
+                                    <a href="contact.html" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Enquire Admissions</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-0 ticker-wrapper mb-5">
+        <div class="ticker-heading text-uppercase text-nowrap">
+            <i class="fa fa-bullhorn me-2"></i>News HeadTicker
+        </div>
+        <div class="ticker-text-moving">
+            <span><strong>[ATTENTION]</strong> September Term Online Admissions Registry Portal is actively processing application verification metrics. Apply now!</span>
+            <span><strong>[EXAMS]</strong> Internal practical and theory series examination timetables have been securely mapped to staff and student dashboard panels.</span>
+            <span><strong>[FINANCE]</strong> HELB allocations validation parameters against system tracking rules are open until next Friday at the main accounts desk.</span>
+        </div>
+    </div>
+
+    <div class="container-xxl py-5 bg-light-custom my-0 border-top border-bottom">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Central Information Hub</h6>
+                <h1 class="mb-5">News, Memos & Official Event Posts</h1>
+            </div>
+            <div class="row g-4">
+                
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="bg-white p-4 rounded shadow-sm border-top border-5 border-maroon h-100">
+                        <h4 class="mb-4 text-maroon font-weight-bold d-flex align-items-center">
+                            <i class="fa fa-file-pdf me-3"></i>Official Memos Feed
+                        </h4>
+                        <div class="notice-card memo-type p-3 mb-3 border rounded shadow-sm">
+                            <span class="badge bg-maroon text-white mb-2" style="font-size: 0.75rem;">Ref: TENP/EX/05/26</span>
+                            <h6 class="font-weight-bold mb-1">KNEC Series Examinations Logistics and Pass Issuance</h6>
+                            <p class="text-muted small mb-2">Internal engineering and analytics examination parameters have been established. All terminal clearance verification sequences are underway.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">
+                                <small class="text-muted"><i class="fa fa-calendar-alt me-1 text-tenp-gold"></i>May 19, 2026</small>
+                                <a href="{% static 'pdf/memo-knec-exam-may2026.pdf' %}" class="small text-primary fw-bold" target="_blank">PDF Full memo <i class="fa fa-download ms-1"></i></a>
+                            </div>
+                        </div>
+                        <div class="notice-card memo-type p-3 border rounded shadow-sm">
+                            <span class="badge bg-maroon text-white mb-2" style="font-size: 0.75rem;">Ref: TENP/FIN/09/26</span>
+                            <h6 class="font-weight-bold mb-1">Zero Fee Balance Clearance Registry Rules</h6>
+                            <p class="text-muted small mb-2">Administration ledger reminds all ERP system users checking exam pass parameters matrix that zero finance balance rules remain active.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">
+                                <small class="text-muted"><i class="fa fa-calendar-alt me-1 text-tenp-gold"></i>May 15, 2026</small>
+                                <a href="{% static 'pdf/memo-fee-clearance-rule2026.pdf' %}" class="small text-primary fw-bold" target="_blank">PDF Full memo <i class="fa fa-download ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="bg-white p-4 rounded shadow-sm border-top border-5 border-primary h-100">
+                        <h4 class="mb-4 text-primary font-weight-bold d-flex align-items-center">
+                            <i class="fa fa-newspaper me-3"></i>Campus News Matrix
+                        </h4>
+                        <div class="notice-card p-3 border rounded shadow-sm">
+                            <img src="{% static 'img/course-1.jpg' %}" class="img-fluid rounded mb-2" alt="TENP ICT Project" style="max-height: 130px; width: 100%; object-fit: cover;">
+                            <h6 class="font-weight-bold mb-1">TENP Innovators Design Multi-Role ERP SACCO Framework Prototype</h6>
+                            <p class="text-muted small mb-2">Computer Studies trainees verified specialized financial approval workflow parameters designed for regional cooperative tracking infrastructure.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">
+                                <small class="text-muted"><i class="fa fa-user me-1 text-tenp-gold"></i>ICT Department Hub</small>
+                                <a href="#" class="small text-maroon fw-bold">Read Post &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="bg-white p-4 rounded shadow-sm border-top border-5 border-warning h-100">
+                        <h4 class="mb-4 text-dark font-weight-bold d-flex align-items-center">
+                            <i class="fa fa-bell me-3 text-warning"></i>Urgent Announcements
+                        </h4>
+                        <div class="notice-card announcement-type p-3 border rounded shadow-sm" style="background-color: #FFFDF0;">
+                            <span class="badge bg-danger text-white mb-2"><i class="fa fa-exclamation-triangle me-1"></i>URGENT REGISTRY</span>
+                            <h6 class="font-weight-bold mb-1">September Intake Application Verification Deadline</h6>
+                            <p class="text-muted small mb-2">KUCCPS direct placement processing runs via the main portals catalog layout rules. Ensure credentials match before portal close sequence metrics.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">
+                                <small class="text-muted"><i class="fa fa-hourglass-half me-1 text-tenp-green"></i>Due: May 28</small>
+                                <a href="#" class="small text-dark fw-bold">View Status Hub &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item text-center pt-3 shadow-sm bg-light-custom">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
+                            <h5 class="mb-3">Certified TVET Trainers</h5>
+                            <p>Highly qualified instructional engineering faculty tracking customized hands-on skill transference strategies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item text-center pt-3 shadow-sm bg-light-custom">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-tools text-primary mb-4"></i>
+                            <h5 class="mb-3">Advanced Technical Labs</h5>
+                            <p>Equipped industrial workshop centers tracking deep engineering design metrics and processing setups.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item text-center pt-3 shadow-sm bg-light-custom">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-industry text-primary mb-4"></i>
+                            <h5 class="mb-3">Industrial Linkages</h5>
+                            <p>Direct organizational pipelines matching technical department trainees straight to real attachment routes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item text-center pt-3 shadow-sm bg-light-custom">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-book-reader text-primary mb-4"></i>
+                            <h5 class="mb-3">KASNEB & KNEC Hub</h5>
+                            <p>National certification testing center with modern tracking validation controls and structures.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Quick System Navigation</h4>
+                    <a class="btn btn-link text-white-50 text-decoration-none d-block mb-2" href="apply_online.html">Online Application Portal</a>
+                    <a class="btn btn-link text-white-50 text-decoration-none d-block mb-2" href="fees.html">Fee Structures & Ledgers</a>
+                    <a class="btn btn-link text-white-50 text-decoration-none d-block mb-2" href="portal.html">Student Portal Registry</a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Campus Contact Desk</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3 text-warning"></i>Along Eldoret-Kisumu Road, Eldoret, Kenya</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3 text-warning"></i>+254 53 2062503 / 0712345678</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3 text-warning"></i>info@eldoretpolytechnic.ac.ke</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Institutional Status</h4>
+                    <p class="text-white-50">Providing high quality technical, vocational, and entrepreneurial training hubs aligned with ISO standards.</p>
+                    <span class="badge bg-primary text-warning px-3 py-2 text-uppercase font-weight-bold">ISO 9001:2015 Registered</span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright text-center border-top py-4 mt-4 text-white-50 small">
+                <p>&copy; The Eldoret National Polytechnic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        (function() {
+            function deactivateSpinner() {
+                var spinnerElement = document.getElementById('spinner');
+                if (spinnerElement) {
+                    spinnerElement.classList.remove('show');
+                    spinnerElement.style.display = 'none';
+                }
+            }
+            // Trigger kill layout on execution read
+            deactivateSpinner();
+            // Trigger secondary enforcement rule once DOM is parsed
+            document.addEventListener('DOMContentLoaded', deactivateSpinner);
+            // Absolute third tier runtime block just in case external assets lag
+            window.addEventListener('load', function() {
+                setTimeout(deactivateSpinner, 150);
+            });
+        })();
+    </script>
+</body>
+</html>
