@@ -19,7 +19,7 @@ def home(request):
         'announcements': NoticeBoard.objects.filter(category='announcement').order_by('-created_at'),
         'partners': Partner.objects.all(),
     }
-    return render(request, 'index.html', context)
+    return render(request, 'home.html', context)
 
 # Optional: Ensures only logged-in portal users can post
 def create_notice(request):
