@@ -44,3 +44,5 @@ def diploma(request):
     return render(request, 'diploma.html')
 def artisan(request):
     return render(request, 'artisan.html')
+def Contact(request):
+    return render(request, 'contact.html')

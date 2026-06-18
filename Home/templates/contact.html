@@ -1,275 +1,791 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>eLEARNING - eLearning HTML Template</title>
+    <title>TENP – Contact & Administration</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="Contact, Administration, Eldoret National Polytechnic" name="keywords">
+    <meta content="Get in touch with The Eldoret National Polytechnic – administration, admissions, academic affairs, and more." name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
 
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* ─── Variables ─── */
+        :root {
+            --tenp-green: #004B23;
+            --tenp-gold: #D4AF37;
+            --tenp-dark: #1A1A2E;
+            --tenp-light-bg: #F8F9FA;
+            --tenp-white: #FFFFFF;
+            --tenp-shadow: 0 10px 30px -8px rgba(0,0,0,0.08);
+        }
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--tenp-white);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+
+        /* ─── Utility Bar ─── */
+        .top-bar {
+            background: var(--tenp-green);
+            color: #e2e8f0;
+            font-size: 0.75rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .top-bar a { color: #e2e8f0; transition: color 0.2s; }
+        .top-bar a:hover { color: var(--tenp-gold); }
+
+        .kenya-flag-css {
+            width: 32px;
+            height: 20px;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            background: #006600;
+            display: inline-block;
+        }
+        .kenya-flag-css::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 33.33%;
+            width: 100%;
+            background: #000000;
+        }
+        .kenya-flag-css::after {
+            content: "";
+            position: absolute;
+            top: 33.33%;
+            left: 0;
+            height: 33.33%;
+            width: 100%;
+            background: #BB0000;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+        }
+
+        /* ─── Navbar ─── */
+        .main-nav {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--tenp-gold);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        .main-nav .navbar-brand img { height: 42px; width: auto; }
+        .main-nav .navbar-brand h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            color: var(--tenp-green);
+            letter-spacing: -0.5px;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .main-nav .navbar-brand small {
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .main-nav .nav-link {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1e293b !important;
+            padding: 0.6rem 1rem !important;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .main-nav .nav-link:hover,
+        .main-nav .nav-link.active {
+            color: var(--tenp-green) !important;
+            background: #f1f5f9;
+        }
+        .main-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--tenp-green);
+            transition: all 0.25s;
+            transform: translateX(-50%);
+        }
+        .main-nav .nav-link:hover::after,
+        .main-nav .nav-link.active::after {
+            width: 60%;
+        }
+        .dropdown-menu {
+            border: none;
+            border-top: 3px solid var(--tenp-gold);
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            padding: 0.5rem 0;
+        }
+        .dropdown-item {
+            font-size: 0.8rem;
+            padding: 0.5rem 1.5rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .dropdown-item:hover {
+            background: #f8fafc;
+            border-left-color: var(--tenp-green);
+            color: var(--tenp-green);
+        }
+        .dropdown-item.active {
+            background: #f1f5f9;
+            border-left-color: var(--tenp-green);
+            color: var(--tenp-green);
+        }
+
+        /* ─── Hero ─── */
+        .page-hero {
+            background: linear-gradient(135deg, #002b15 0%, #004B23 50%, #006633 100%);
+            padding: 4rem 0 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--tenp-gold);
+        }
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+        }
+        .page-hero h1 span { color: var(--tenp-gold); }
+        .page-hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            max-width: 500px;
+        }
+        .page-hero .breadcrumb {
+            background: transparent;
+            padding: 0;
+            justify-content: flex-end;
+        }
+        .page-hero .breadcrumb-item a {
+            color: var(--tenp-gold);
+            transition: color 0.2s;
+        }
+        .page-hero .breadcrumb-item a:hover { color: white; }
+        .page-hero .breadcrumb-item.active {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ─── Contact Cards ─── */
+        .contact-grid {
+            padding: 3.5rem 0;
+        }
+        .section-badge {
+            display: inline-block;
+            background: rgba(0,75,35,0.08);
+            color: var(--tenp-green);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 0.3rem 1.2rem;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+            color: #0f172a;
+        }
+        .section-title span { color: var(--tenp-green); }
+
+        .contact-card {
+            background: white;
+            border: 1px solid #e9edf2;
+            border-radius: 0;
+            padding: 2rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--tenp-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0,75,35,0.12);
+            border-color: var(--tenp-gold);
+        }
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+        .contact-card .card-icon {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,75,35,0.06);
+            color: var(--tenp-green);
+            font-size: 1.8rem;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            transition: all 0.3s;
+        }
+        .contact-card:hover .card-icon {
+            background: var(--tenp-green);
+            color: white;
+        }
+        .contact-card h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+        }
+        .contact-card p {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 0.25rem;
+        }
+        .contact-card p i {
+            color: var(--tenp-gold);
+            width: 20px;
+        }
+        .contact-card .map-wrap {
+            margin-top: 1rem;
+            border-radius: 0;
+            overflow: hidden;
+            border: 1px solid #e9edf2;
+        }
+        .contact-card .map-wrap iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            display: block;
+        }
+
+        /* ─── Partners ─── */
+        .partners-section {
+            background: var(--tenp-light-bg);
+            padding: 3.5rem 0;
+        }
+        .partners-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            margin-top: 1.5rem;
+        }
+        .partner-logo img {
+            max-height: 55px;
+            width: auto;
+            opacity: 0.6;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .partner-logo img:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* ─── News Sidebar ─── */
+        .news-sidebar {
+            background: var(--tenp-light-bg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--tenp-gold);
+            height: 100%;
+        }
+        .news-sidebar h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--tenp-gold);
+            padding-bottom: 0.5rem;
+        }
+        .news-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .news-sidebar ul li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9edf2;
+        }
+        .news-sidebar ul li:last-child {
+            border-bottom: none;
+        }
+        .news-sidebar ul li strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #0f172a;
+        }
+        .news-sidebar ul li .more-link {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--tenp-green);
+            transition: color 0.2s;
+        }
+        .news-sidebar ul li .more-link:hover {
+            color: var(--tenp-gold);
+        }
+
+        /* ─── Layout for main + sidebar ─── */
+        .content-wrap {
+            display: flex;
+            gap: 2rem;
+            padding: 2.5rem 0;
+        }
+        .content-main {
+            flex: 2;
+        }
+        .content-sidebar {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* ─── Footer ─── */
+        .footer-tenp {
+            background: var(--tenp-green);
+            color: #d1d5db;
+            padding: 3rem 0 1.5rem;
+        }
+        .footer-tenp h5 {
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+        .footer-tenp .footer-link {
+            color: #d1d5db;
+            transition: all 0.2s;
+            display: inline-block;
+            font-size: 0.85rem;
+        }
+        .footer-tenp .footer-link:hover {
+            color: var(--tenp-gold);
+            transform: translateX(4px);
+        }
+        .footer-tenp .social-btn {
+            background: rgba(255,255,255,0.08);
+            border: none;
+            border-radius: 0;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            transition: background 0.2s;
+        }
+        .footer-tenp .social-btn:hover {
+            background: rgba(255,255,255,0.18);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.2rem;
+            font-size: 0.8rem;
+            color: #b0b8c1;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 991.98px) {
+            .content-wrap {
+                flex-direction: column;
+            }
+            .content-sidebar {
+                min-width: unset;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .page-hero h1 { font-size: 2rem; }
+            .page-hero .breadcrumb { justify-content: flex-start; margin-top: 1rem; }
+            .partners-grid { gap: 1.5rem; }
+            .partner-logo img { max-height: 40px; }
+        }
+        @media (max-width: 575.98px) {
+            .contact-card { padding: 1.5rem 1rem; }
+            .news-sidebar { padding: 1rem; }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
+
+    <!-- ─── SPINNER ─── -->
+    <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" style="z-index:9999;">
+        <div class="spinner-border text-success" style="width: 2.5rem; height: 2.5rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <!-- Spinner End -->
 
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>eLEARNING</h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link active">Contact</a>
+    <!-- ─── TOP UTILITY BAR (with Kenyan flag) ─── -->
+    <div class="top-bar d-none d-lg-block">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <div>
+                <span class="me-3"><i class="fa-regular fa-envelope text-warning me-1"></i>info@tenp.ac.ke</span>
+                <span class="me-3"><i class="fa-solid fa-phone text-warning me-1"></i>+254 797 222 666</span>
+                <span><i class="fa-solid fa-location-dot text-warning me-1"></i>Eldoret-Kisumu Road, Kenya</span>
             </div>
-            <a href="https://htmlcodex.com/downloading/?item=2151" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Buy Pro Version<i class="fa fa-arrow-right ms-3"></i></a>
+            <div class="d-flex align-items-center">
+                <div class="kenya-flag-css me-2"></div>
+                <span class="badge bg-transparent border border-light border-opacity-25 text-white px-2 py-1 text-uppercase" style="font-size:0.6rem; font-weight:700;">ISO 9001:2015</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── PORTAL GATEWAYS ─── -->
+    <div class="bg-dark text-white-50 border-bottom border-dark" style="font-size:0.75rem; background:#003619 !important;">
+        <div class="container-fluid px-4 py-1 d-flex flex-wrap justify-content-between align-items-center">
+            <span class="text-uppercase fw-semibold text-white" style="font-size:0.65rem;"><i class="fa-solid fa-link me-1 text-warning"></i>Direct Campus Gateways:</span>
+            <div class="d-flex gap-2">
+                <a href="https://eldopoly.ac.ke/eportal/" class="text-white text-decoration-none"><i class="fa-solid fa-graduation-cap me-1 text-warning"></i>Student Portal</a>
+                <span class="text-white-50">|</span>
+                <a href="/portal/staff-login/" class="text-white text-decoration-none"><i class="fa-solid fa-user-tie me-1" style="color: var(--tenp-gold);"></i>Staff Portal</a>
+                <span class="text-white-50">|</span>
+                <a href="https://tenp.ac.ke/" class="text-white text-decoration-none"><i class="fa-solid fa-calendar-alt me-1"></i>Staff Appraisal</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── NAVBAR ─── -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top main-nav py-0">
+        <div class="container-fluid px-4">
+            <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+                <img src="{% static 'img/logo.jpeg' %}" alt="TENP Logo" class="me-2">
+                <div>
+                    <h4 class="m-0">TENP</h4>
+                    <small>Academia</small>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Our History</a></li>
+                            <li><a href="#" class="dropdown-item">Vision &amp; Mission</a></li>
+                            <li><a href="#" class="dropdown-item">Service Charter</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">Administration</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'council' %}" class="dropdown-item">Governing Council</a></li>
+                            <li><a href="#" class="dropdown-item">Principal's Office</a></li>
+                            <li><a href="#" class="dropdown-item">Deputy Principals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown">Courses</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="courses_advert.html" class="dropdown-item fw-bold" style="color:var(--tenp-green);"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Brochure</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="{% url 'higher_diploma' %}" class="dropdown-item">Higher Diploma</a></li>
+                            <li><a href="{% url 'diploma' %}" class="dropdown-item">Diploma &amp; Certificate</a></li>
+                            <li><a href="{% url 'artisan' %}" class="dropdown-item">Artisan &amp; Short</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="academicsDropdown" role="button" data-bs-toggle="dropdown">Academics</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Departments</a></li>
+                            <li><a href="#" class="dropdown-item">Examinations</a></li>
+                            <li><a href="#" class="dropdown-item">Digital Library</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown"><i class="fa-solid fa-signature me-1"></i>Admissions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://tenp.ac.ke/pages/admission.php" class="dropdown-item" target="_blank"><i class="fa-solid fa-download me-2"></i>Admission Letters</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fa-solid fa-pen-to-square me-2"></i>Online Application</a></li>
+                            <li><a href="#" class="dropdown-item">KUCCPS Placement</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <!-- Navbar End -->
 
-
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Contact</h1>
+    <!-- ─── HERO ─── -->
+    <section class="page-hero">
+        <div class="container px-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1>Contact &amp; <span>Administration</span></h1>
+                    <p>Get in touch with our offices – we're here to help with admissions, academic affairs, and general inquiries.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
+    </section>
 
+    <!-- ─── CONTENT WRAP (main + sidebar) ─── -->
+    <div class="container px-4">
+        <div class="content-wrap">
 
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
-                <h1 class="mb-5">Contact For Any Query</h1>
+            <!-- ─── MAIN CONTENT ─── -->
+            <div class="content-main">
+
+                <!-- Contact Cards Grid -->
+                <div class="row g-4">
+                    <!-- Main Administration -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <div class="card-icon"><i class="fa-solid fa-building-columns"></i></div>
+                            <h5>Main Administration</h5>
+                            <p><i class="fa-solid fa-phone"></i> +254 0797 222 666</p>
+                            <p><i class="fa-solid fa-phone"></i> +254 0738 092 126</p>
+                            <p><i class="fa-solid fa-envelope"></i> info@tenp.ac.ke</p>
+                        </div>
+                    </div>
+
+                    <!-- Admissions Office -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h5>Admissions Office</h5>
+                            <p><i class="fa-solid fa-phone"></i> +254 0797 222 666</p>
+                            <p><i class="fa-solid fa-envelope"></i> admissions@tenp.ac.ke</p>
+                            <p><i class="fa-regular fa-clock"></i> Mon–Fri, 8:00 AM – 5:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Academic Affairs -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                            <h5>Academic Affairs</h5>
+                            <p><i class="fa-solid fa-envelope"></i> registrar@tenp.ac.ke</p>
+                            <p><i class="fa-solid fa-phone"></i> +254 0738 092 126</p>
+                        </div>
+                    </div>
+
+                    <!-- Customer Care -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+                            <h5>Customer Care</h5>
+                            <p><i class="fa-solid fa-envelope"></i> inquiries@tenp.ac.ke</p>
+                            <p><i class="fa-solid fa-phone"></i> +254 0797 222 666</p>
+                            <p><i class="fa-solid fa-phone"></i> +254 0738 092 126</p>
+                        </div>
+                    </div>
+
+                    <!-- Human Resource -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+                            <h5>Human Resource</h5>
+                            <p><i class="fa-solid fa-envelope"></i> hr@tenp.ac.ke</p>
+                            <p><i class="fa-solid fa-phone"></i> +254 0738 092 126</p>
+                        </div>
+                    </div>
+
+                    <!-- Location & Map -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <h5>Physical Location</h5>
+                            <p><i class="fa-regular fa-building"></i> UASIN GISHU COUNTY</p>
+                            <p><i class="fa-solid fa-road"></i> ELDORET–KAPSABET–KISUMU ROAD</p>
+                            <div class="map-wrap">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.817243350802!2d35.2699397!3d0.481251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1780fe307e19fb61%3A0xf25cb4efed303654!2sEldoret%20Polytechnic!5e0!3m2!1sen!2ske!4v1707130000000"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── PARTNERS ─── -->
+                <section class="partners-section mt-5" style="background: transparent; padding: 2rem 0 0;">
+                    <div class="text-center">
+                        <span class="section-badge"><i class="fa-regular fa-handshake me-2"></i>Our Partners</span>
+                        <h3 class="section-title mt-2">Trusted <span>Institutions</span></h3>
+                        <p class="text-muted" style="max-width:560px; margin:0 auto;">We work closely with key education and training bodies in Kenya.</p>
+                    </div>
+                    <div class="partners-grid">
+                        <a href="https://www.helb.co.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/helb.png' %}" alt="HELB">
+                        </a>
+                        <a href="https://www.kuccps.ac.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/kuccps.png' %}" alt="KUCCPS">
+                        </a>
+                        <a href="https://www.education.go.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/moe.png' %}" alt="Ministry of Education">
+                        </a>
+                        <a href="https://www.tvet.go.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/tvet.png' %}" alt="State Department for TVET">
+                        </a>
+                        <a href="https://www.knec.ac.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/knec.png' %}" alt="KNEC">
+                        </a>
+                        <a href="https://www.cdacc.go.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/cdacc.png' %}" alt="CDACC">
+                        </a>
+                        <a href="https://www.tveta.go.ke" target="_blank" class="partner-logo">
+                            <img src="{% static 'img/partners/tveta.png' %}" alt="TVETA">
+                        </a>
+                    </div>
+                </section>
+
             </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h5>Get In Touch</h5>
-                    <h4 class="mb-4 lh-base">Receive messages instantly with our PHP and Ajax contact form - available in the <a href="https://htmlcodex.com/downloading/?item=2151">Pro Version</a> only.</h4>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
-                            <i class="fa fa-map-marker-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Office</h5>
-                            <p class="mb-0">123 Street, New York, USA</p>
-                        </div>
+
+            <!-- ─── SIDEBAR – NEWS & EVENTS ─── -->
+            <div class="content-sidebar">
+                <div class="news-sidebar">
+                    <h4><i class="fa-regular fa-newspaper me-2" style="color: var(--tenp-gold);"></i>News &amp; Events</h4>
+                    <ul>
+                        <li>
+                            <strong>PS Muoria Tasks NGAO to Drive 100% TVET Transition for High School Graduates</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                        <li>
+                            <strong>Eldoret National Polytechnic and Mama Mazingira Explore Transformative Partnership</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                        <li>
+                            <strong>Chief Principal Dr. Charles Koech hosts Dr. Roseline Arshley (WOLAA)</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                        <li>
+                            <strong>County Scouts Commissioner presides over investiture of 100+ Scouts</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                        <li>
+                            <strong>TENP, Tindiret TVC Seal Landmark RPL Deal for Skills Recognition</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                        <li>
+                            <strong>Eldoret polytechnic scoops 16 trophies at drama festivals</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                        <li>
+                            <strong>New Inter-Institutional Chaplaincy Launched in Eldoret</strong>
+                            <a href="#" class="more-link">Read More →</a>
+                        </li>
+                    </ul>
+                    <div class="mt-3 text-end">
+                        <a href="#" class="btn btn-sm btn-outline-tenp" style="border:1px solid var(--tenp-green); color:var(--tenp-green); padding:0.3rem 1.2rem; font-size:0.75rem; font-weight:600; transition:all 0.2s; border-radius:0;">View All News →</a>
                     </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Mobile</h5>
-                            <p class="mb-0">+012 345 67890</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary" style="width: 50px; height: 50px;">
-                            <i class="fa fa-envelope-open text-white"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5 class="text-primary">Email</h5>
-                            <p class="mb-0">info@example.com</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div>
-                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
+
         </div>
     </div>
-    <!-- Contact End -->
 
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer-tenp">
+        <div class="container px-4">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
+                    <h5><i class="fa-solid fa-building-columns me-2 text-warning"></i>TENP Gateway</h5>
+                    <p class="small" style="line-height:1.7;">Pioneering state-level TVET frameworks to foster technical training excellence, industrial innovation, and globally competitive workforce engineering.</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <h5>Quick Navigation</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-1 small">
+                        <li><a href="#" class="footer-link">&raquo; About Our Institution</a></li>
+                        <li><a href="#" class="footer-link">&raquo; Contact Desk</a></li>
+                        <li><a href="#" class="footer-link">&raquo; Fee Structures Matrix</a></li>
+                    </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Gallery</h4>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
-                        </div>
-                    </div>
+                    <h5>Gateways</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-1 small">
+                        <li><a href="https://eldopoly.ac.ke/eportal/" class="footer-link">&raquo; Student Portal Access</a></li>
+                        <li><a href="/portal/staff-login/" class="footer-link">&raquo; Academic Staff Intranet</a></li>
+                        <li><a href="#" class="footer-link">&raquo; Online Application Registry</a></li>
+                    </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    <h5>Communications Desk</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-map-marker-alt me-2 text-warning"></i>Eldoret-Kisumu Road, Eldoret, Kenya</p>
+                    <p class="small mb-3"><i class="fa-solid fa-envelope me-2 text-warning"></i>info@eldoretpolytechnic.ac.ke</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** The author’s attribution link must remain intact in the template. ***/-->
-                        <!--/*** If you wish to remove this credit link, please purchase the Pro Version . ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
-                    </div>
+            <div class="footer-bottom row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 <span class="text-white fw-bold">The Eldoret National Polytechnic</span>. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
+    </footer>
 
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
+    <!-- ─── SCRIPTS ─── -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var spinner = document.getElementById('spinner');
+            if (spinner) spinner.classList.add('d-none');
+        });
+        setTimeout(function() {
+            var spinner = document.getElementById('spinner');
+            if (spinner) spinner.classList.add('d-none');
+        }, 1000);
+    </script>
 </body>
-
 </html>

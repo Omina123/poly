@@ -1,328 +1,176 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>The Eldoret National Polytechnic | TENP Artisan & Short Courses</title>
+    <title>TENP – Artisan & Short Courses</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Eldoret National Polytechnic, TENP, TVET Kenya, Artisan, Short Courses" name="keywords">
-    <meta content="Explore our practical Artisan and Short Courses at The Eldoret National Polytechnic." name="description">
+    <meta content="Artisan, Short Courses, TVET, Eldoret National Polytechnic" name="keywords">
+    <meta content="Hands‑on practical training and short‑term upskilling programmes for immediate employability." name="description">
 
     <link href="{% static 'img/favicon.ico' %}" rel="icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <style>
-        /* ─── same styles as before ─── */
+        /* ─── Variables ─── */
         :root {
-            --tenp-imperial: #004B23;
-            --tenp-marble: #FFFFFF;
+            --tenp-green: #004B23;
             --tenp-gold: #D4AF37;
-            --tenp-maroon: #660000;
-            --tenp-dark-slate: #111827;
-            --tenp-muted-gray: #F3F4F6;
-            --tenp-hover-bg: #f8f9fc;
-            --tenp-shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-            --tenp-shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+            --tenp-dark: #1A1A2E;
+            --tenp-light-bg: #F8F9FA;
+            --tenp-white: #FFFFFF;
+            --tenp-shadow: 0 10px 30px -8px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--tenp-dark-slate);
-            background-color: var(--tenp-marble);
-            overflow-x: hidden;
-            letter-spacing: -0.01em;
+            background: var(--tenp-white);
+            color: #1e293b;
+            line-height: 1.6;
         }
 
-        h1, h2, h3, h4, .academic-title {
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
+        a { text-decoration: none; }
 
-        .institution-crest-text {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            letter-spacing: 1.0px;
-            color: var(--tenp-imperial);
-        }
-
-        #spinner {
-            visibility: visible;
-            opacity: 1;
-            z-index: 999999;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-        #spinner.hide {
-            visibility: hidden;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .tsinghua-utility-bar {
-            background-color: var(--tenp-imperial);
+        /* ─── Utility Bar ─── */
+        .top-bar {
+            background: var(--tenp-green);
+            color: #e2e8f0;
             font-size: 0.75rem;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .top-bar a { color: #e2e8f0; transition: color 0.2s; }
+        .top-bar a:hover { color: var(--tenp-gold); }
+
+        /* Kenyan flag CSS */
+        .kenya-flag-css {
+            width: 32px;
+            height: 20px;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            background: #006600;
+            display: inline-block;
+        }
+        .kenya-flag-css::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 33.33%;
+            width: 100%;
+            background: #000000;
+        }
+        .kenya-flag-css::after {
+            content: "";
+            position: absolute;
+            top: 33.33%;
+            left: 0;
+            height: 33.33%;
+            width: 100%;
+            background: #BB0000;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
         }
 
-        .tsinghua-portal-gateways {
-            background-color: #003619;
-            font-size: 0.75rem;
-        }
-        .tsinghua-portal-gateways a {
-            transition: color 0.2s ease;
-            font-weight: 500;
-        }
-        .tsinghua-portal-gateways a:hover {
-            color: var(--tenp-gold) !important;
-        }
-
-        .premium-nav {
+        /* ─── Navbar ─── */
+        .main-nav {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
             border-bottom: 3px solid var(--tenp-gold);
-            background: rgba(255, 255, 255, 0.98) !important;
-            backdrop-filter: blur(12px);
-            box-shadow: var(--tenp-shadow-sm);
-            transition: box-shadow 0.3s ease;
-            min-height: 70px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
-
-        .premium-nav .container-fluid {
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
-        }
-
-        .premium-nav .navbar-brand {
-            padding-top: 0.5rem !important;
-            padding-bottom: 0.5rem !important;
-        }
-
-        .premium-nav .navbar-brand img {
-            height: 42px !important;
-        }
-
-        .premium-nav .navbar-brand h4 {
-            font-size: 1.2rem;
+        .main-nav .navbar-brand img { height: 42px; width: auto; }
+        .main-nav .navbar-brand h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            color: var(--tenp-green);
+            letter-spacing: -0.5px;
             margin: 0;
             line-height: 1.2;
         }
-
-        .premium-nav .navbar-brand span {
-            font-size: 0.6rem !important;
+        .main-nav .navbar-brand small {
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
         }
-
-        .premium-nav .nav-link {
+        .main-nav .nav-link {
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--tenp-dark-slate) !important;
-            padding: 0.6rem 0.9rem !important;
-            transition: all 0.2s ease;
+            color: #1e293b !important;
+            padding: 0.6rem 1rem !important;
+            transition: all 0.2s;
             position: relative;
-            white-space: nowrap;
         }
-
-        .premium-nav .dropdown-toggle::after {
-            vertical-align: middle;
-            font-size: 0.7rem;
+        .main-nav .nav-link:hover,
+        .main-nav .nav-link.active {
+            color: var(--tenp-green) !important;
+            background: #f1f5f9;
         }
-
-        .premium-nav .nav-link:hover,
-        .premium-nav .nav-link:focus,
-        .premium-nav .nav-link.active {
-            color: var(--tenp-imperial) !important;
-            background-color: var(--tenp-hover-bg);
-        }
-
-        .premium-nav .nav-link::after {
+        .main-nav .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             width: 0;
             height: 2px;
-            background: var(--tenp-imperial);
-            transition: all 0.25s ease;
+            background: var(--tenp-green);
+            transition: all 0.25s;
             transform: translateX(-50%);
-            border-radius: 2px;
         }
-
-        .premium-nav .nav-link:hover::after,
-        .premium-nav .nav-link.active::after {
+        .main-nav .nav-link:hover::after,
+        .main-nav .nav-link.active::after {
             width: 60%;
         }
-
         .dropdown-menu {
-            border-radius: 0 0 6px 6px;
             border: none;
-            box-shadow: var(--tenp-shadow-md);
-            padding: 0.5rem 0;
-            margin-top: 0;
-            background: var(--tenp-marble);
             border-top: 3px solid var(--tenp-gold);
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            padding: 0.5rem 0;
         }
-
         .dropdown-item {
             font-size: 0.8rem;
-            font-weight: 500;
             padding: 0.5rem 1.5rem;
-            color: var(--tenp-dark-slate);
-            transition: all 0.2s ease;
             border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .dropdown-item:hover {
+            background: #f8fafc;
+            border-left-color: var(--tenp-green);
+            color: var(--tenp-green);
+        }
+        .dropdown-item.active {
+            background: #f1f5f9;
+            border-left-color: var(--tenp-green);
+            color: var(--tenp-green);
         }
 
-        .dropdown-item:hover,
-        .dropdown-item:focus {
-            background-color: var(--tenp-muted-gray);
-            color: var(--tenp-imperial);
-            border-left-color: var(--tenp-imperial);
-        }
-
-        .dropdown-submenu {
-            position: relative;
-        }
-        .dropdown-submenu .dropdown-menu {
-            top: 0;
-            left: 100%;
-            margin-top: -1px;
-            margin-left: 2px;
-            display: none;
-            border-radius: 0 6px 6px 6px;
-            border-left: none;
-            border-top: none;
-            border-bottom: 2px solid var(--tenp-gold);
-            min-width: 200px;
-        }
-        .dropdown-submenu:hover .dropdown-menu {
-            display: block;
-            animation: fadeSlideIn 0.2s ease-out;
-        }
-
-        @keyframes fadeSlideIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .portal-entry-btn {
-            background-color: var(--tenp-imperial) !important;
-            transition: all 0.2s ease;
-            letter-spacing: 0.5px;
-            border: 1px solid var(--tenp-gold) !important;
-            padding: 0.5rem 1.2rem !important;
-            font-size: 0.75rem !important;
-            margin-left: 0.5rem;
-            white-space: nowrap;
-        }
-
-        .portal-entry-btn:hover {
-            background-color: #003017 !important;
-            transform: translateY(-1px);
-        }
-
-        @media (max-width: 1199.98px) {
-            .premium-nav .nav-link {
-                padding: 0.5rem 0.7rem !important;
-                font-size: 0.8rem;
-            }
-            .portal-entry-btn {
-                padding: 0.4rem 1rem !important;
-                font-size: 0.7rem !important;
-            }
-        }
-
-        @media (max-width: 991.98px) {
-            .premium-nav {
-                backdrop-filter: blur(16px);
-            }
-            .premium-nav .nav-link {
-                padding: 0.7rem 1rem !important;
-                white-space: normal;
-            }
-            .premium-nav .nav-link::after {
-                display: none;
-            }
-            .dropdown-menu {
-                border-left: 3px solid var(--tenp-imperial);
-                margin-left: 1rem;
-                box-shadow: none;
-            }
-            .dropdown-submenu .dropdown-menu {
-                left: 0;
-                margin-left: 1.5rem;
-            }
-            .portal-entry-btn {
-                margin: 0.75rem 1rem;
-                display: inline-block;
-                width: auto;
-                text-align: center;
-            }
-        }
-
-        /* Hero Section */
-        .hero-premium-viewport {
-            height: 70vh;
-            background-size: cover;
-            background-position: center;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('{% static 'img/campus-hero.jpg' %}');
-        }
-        .hero-editorial-card {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 2.5rem;
-            border-top: 6px solid var(--tenp-imperial);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-            max-width: 600px;
-        }
-
-        .ticker-bar {
-            background: var(--tenp-dark-slate);
-            color: var(--tenp-marble);
-            height: 44px;
-            overflow: hidden;
-        }
-        .ticker-tag {
-            background: var(--tenp-gold);
-            color: var(--tenp-dark-slate);
-            font-weight: 700;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            padding: 0 1.5rem;
-        }
-        .ticker-text-moving {
-            display: inline-block;
-            padding-left: 100%;
-            animation: moveTicker 30s linear infinite;
-        }
-        @keyframes moveTicker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-        .ticker-text-moving span {
-            display: inline-block;
-            padding-right: 60px;
-            font-size: 0.85rem;
-        }
-
-        /* ─── courses page header ─── */
-        .courses-hero-divider {
-            background: linear-gradient(135deg, var(--tenp-imperial) 0%, #002b15 100%);
-            padding: 3rem 0 2.5rem;
+        /* ─── Hero ─── */
+        .page-hero {
+            background: linear-gradient(135deg, #002b15 0%, #004B23 50%, #006633 100%);
+            padding: 4rem 0 3.5rem;
             position: relative;
             overflow: hidden;
         }
-        .courses-hero-divider::after {
+        .page-hero::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -331,261 +179,388 @@
             height: 6px;
             background: var(--tenp-gold);
         }
-        .courses-hero-divider h1 {
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
         }
-        .courses-hero-divider .breadcrumb-item a {
+        .page-hero h1 span { color: var(--tenp-gold); }
+        .page-hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            max-width: 500px;
+        }
+        .page-hero .breadcrumb {
+            background: transparent;
+            padding: 0;
+            justify-content: flex-end;
+        }
+        .page-hero .breadcrumb-item a {
             color: var(--tenp-gold);
-            text-decoration: none;
             transition: color 0.2s;
         }
-        .courses-hero-divider .breadcrumb-item a:hover {
-            color: #fff;
-        }
-        .courses-hero-divider .breadcrumb-item.active {
-            color: rgba(255, 255, 255, 0.7);
+        .page-hero .breadcrumb-item a:hover { color: white; }
+        .page-hero .breadcrumb-item.active {
+            color: rgba(255,255,255,0.6);
         }
 
-        /* ─── course cards ─── */
-        .course-card {
-            background: var(--tenp-marble);
+        /* ─── Stats Ribbon ─── */
+        .stats-ribbon {
+            background: var(--tenp-white);
+            border-bottom: 1px solid #e9edf2;
+            padding: 1.5rem 0;
+        }
+        .stats-ribbon .stat-item {
+            text-align: center;
+        }
+        .stats-ribbon .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--tenp-green);
+            line-height: 1.2;
+        }
+        .stats-ribbon .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* ─── Course Cards ─── */
+        .course-grid {
+            padding: 3.5rem 0;
+        }
+        .course-grid .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+            color: #0f172a;
+        }
+        .course-grid .section-title span { color: var(--tenp-green); }
+        .section-badge {
+            display: inline-block;
+            background: rgba(0,75,35,0.08);
+            color: var(--tenp-green);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 0.3rem 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .course-card-modern {
+            background: white;
+            border: 1px solid #e9edf2;
             border-radius: 0;
-            border: 1px solid #e9ecef;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 1.75rem 1.5rem;
+            padding: 1.8rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
             position: relative;
             overflow: hidden;
-            height: 100%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
-        .course-card::before {
+        .course-card-modern::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: var(--tenp-imperial);
+            background: var(--tenp-green);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s ease;
         }
-        .course-card:hover {
+        .course-card-modern:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 40px -12px rgba(0, 75, 35, 0.15);
+            box-shadow: 0 20px 40px -12px rgba(0,75,35,0.12);
             border-color: var(--tenp-gold);
         }
-        .course-card:hover::before {
+        .course-card-modern:hover::before {
             transform: scaleX(1);
         }
-        .course-card .course-icon {
-            width: 54px;
-            height: 54px;
+        .course-card-modern .card-icon {
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 75, 35, 0.07);
-            color: var(--tenp-imperial);
-            font-size: 1.6rem;
-            border-radius: 0;
-            transition: all 0.3s ease;
+            background: rgba(0,75,35,0.06);
+            color: var(--tenp-green);
+            font-size: 1.5rem;
+            transition: all 0.3s;
             flex-shrink: 0;
         }
-        .course-card:hover .course-icon {
-            background: var(--tenp-imperial);
-            color: #fff;
+        .course-card-modern:hover .card-icon {
+            background: var(--tenp-green);
+            color: white;
         }
-        .course-card .course-title {
+        .course-card-modern .course-title {
             font-weight: 700;
             font-size: 1.05rem;
-            color: var(--tenp-dark-slate);
-            margin-bottom: 0.15rem;
-            line-height: 1.3;
+            color: #0f172a;
+            margin-bottom: 0.1rem;
         }
-        .course-card .course-code {
+        .course-card-modern .course-code {
             font-size: 0.7rem;
             font-weight: 600;
             color: var(--tenp-gold);
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
-        .course-card .course-desc {
+        .course-card-modern .course-desc {
             font-size: 0.85rem;
-            color: #6b7280;
-            line-height: 1.5;
-            margin-bottom: 0;
+            color: #64748b;
+            margin: 0.5rem 0 0.75rem;
+        }
+        .course-card-modern .course-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: #475569;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .course-card-modern .course-meta i {
+            color: var(--tenp-gold);
+            width: 16px;
+        }
+        .course-card-modern .btn-outline-tenp {
+            border: 1px solid var(--tenp-green);
+            color: var(--tenp-green);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 1.2rem;
+            border-radius: 0;
+            transition: all 0.2s;
+        }
+        .course-card-modern .btn-outline-tenp:hover {
+            background: var(--tenp-green);
+            color: white;
         }
 
-        /* ─── CTA banner ─── */
-        .apply-cta-banner {
-            background: linear-gradient(135deg, var(--tenp-imperial) 0%, #002b15 100%);
+        /* ─── Why Choose ─── */
+        .why-section {
+            background: var(--tenp-light-bg);
+            padding: 3.5rem 0;
+        }
+        .why-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: all 0.3s;
+            border-bottom: 3px solid var(--tenp-gold);
+            height: 100%;
+        }
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+        }
+        .why-card i {
+            font-size: 2.4rem;
+            color: var(--tenp-green);
+            margin-bottom: 1rem;
+        }
+        .why-card h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0f172a;
+        }
+        .why-card p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ─── Application Steps ─── */
+        .steps-section {
+            padding: 3.5rem 0;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .step-number {
+            width: 44px;
+            height: 44px;
+            background: var(--tenp-green);
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-radius: 50%;
+        }
+        .step-item h6 {
+            font-weight: 700;
+            margin-bottom: 0.1rem;
+            font-size: 1rem;
+        }
+        .step-item p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ─── CTA Banner ─── */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--tenp-green) 0%, #002b15 100%);
+            padding: 2.8rem 2.5rem;
             border-left: 6px solid var(--tenp-gold);
-            padding: 2.5rem 2.8rem;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        .apply-cta-banner::after {
+        .cta-banner::after {
             content: '→';
             position: absolute;
             right: -10px;
             bottom: -30px;
             font-size: 12rem;
-            font-weight: 700;
-            color: rgba(212, 175, 55, 0.06);
-            line-height: 1;
+            color: rgba(212,175,55,0.04);
             pointer-events: none;
         }
-        .apply-cta-banner .cta-title {
+        .cta-banner h3 {
+            color: white;
+            font-weight: 700;
             font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -0.02em;
         }
-        .apply-cta-banner .cta-sub {
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 1rem;
-            max-width: 460px;
+        .cta-banner h3 span { color: var(--tenp-gold); }
+        .cta-banner p {
+            color: rgba(255,255,255,0.8);
+            max-width: 500px;
         }
-        .apply-cta-banner .btn-apply-gold {
+        .btn-apply-gold {
             background: var(--tenp-gold);
-            color: var(--tenp-dark-slate);
+            color: #0f172a;
             font-weight: 700;
-            padding: 0.9rem 2.8rem;
-            border-radius: 0;
+            padding: 0.8rem 2.5rem;
             border: none;
+            border-radius: 0;
             font-size: 0.9rem;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            text-transform: uppercase;
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 8px 24px rgba(212,175,55,0.25);
         }
-        .apply-cta-banner .btn-apply-gold:hover {
+        .btn-apply-gold:hover {
             background: #e8c84a;
             transform: translateY(-2px);
-            box-shadow: 0 14px 34px rgba(212, 175, 55, 0.35);
-            color: var(--tenp-dark-slate);
+            box-shadow: 0 12px 34px rgba(212,175,55,0.35);
+            color: #0f172a;
         }
-        .apply-cta-banner .btn-apply-gold i {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
+        .btn-apply-gold i {
+            transition: transform 0.3s;
         }
-        .apply-cta-banner .btn-apply-gold:hover i {
+        .btn-apply-gold:hover i {
             transform: translateX(6px);
         }
 
-        .section-badge {
-            display: inline-block;
-            background: rgba(0, 75, 35, 0.08);
-            color: var(--tenp-imperial);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 0.4rem 1.2rem;
+        /* ─── Accreditation ─── */
+        .accreditation {
+            background: white;
+            padding: 1.5rem 0;
+            border-top: 1px solid #e9edf2;
         }
-        .section-headline {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--tenp-dark-slate);
-            letter-spacing: -0.02em;
+        .accreditation img {
+            max-height: 50px;
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
-        .section-headline span {
-            color: var(--tenp-imperial);
+        .accreditation img:hover {
+            opacity: 1;
         }
 
-        /* ─── GREEN FOOTER ─── */
-        .tsinghua-footer {
-            background-color: #003619 !important;
+        /* ─── Footer ─── */
+        .footer-tenp {
+            background: var(--tenp-green);
             color: #d1d5db;
+            padding: 3rem 0 1.5rem;
+        }
+        .footer-tenp h5 {
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+        .footer-tenp .footer-link {
+            color: #d1d5db;
+            transition: all 0.2s;
+            display: inline-block;
             font-size: 0.85rem;
         }
-        .tsinghua-footer h5 {
-            color: #ffffff;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 1.25rem;
-        }
-        .footer-link {
-            color: #d1d5db;
-            text-decoration: none;
-            transition: color 0.2s ease, transform 0.2s ease;
-            display: inline-block;
-        }
-        .footer-link:hover {
+        .footer-tenp .footer-link:hover {
             color: var(--tenp-gold);
             transform: translateX(4px);
         }
-        .tsinghua-footer .border-secondary {
-            border-color: rgba(255, 255, 255, 0.15) !important;
+        .footer-tenp .social-btn {
+            background: rgba(255,255,255,0.08);
+            border: none;
+            border-radius: 0;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            transition: background 0.2s;
         }
-        .tsinghua-footer .text-muted {
-            color: #b0b8c1 !important;
+        .footer-tenp .social-btn:hover {
+            background: rgba(255,255,255,0.18);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.2rem;
+            font-size: 0.8rem;
+            color: #b0b8c1;
         }
 
+        /* ─── Responsive ─── */
         @media (max-width: 767.98px) {
-            .courses-hero-divider h1 {
-                font-size: 1.8rem;
-            }
-            .apply-cta-banner {
-                padding: 1.8rem 1.5rem;
-            }
-            .apply-cta-banner .cta-title {
-                font-size: 1.4rem;
-            }
-            .apply-cta-banner .btn-apply-gold {
-                width: 100%;
-                justify-content: center;
-                padding: 0.8rem 1.5rem;
-            }
-            .section-headline {
-                font-size: 1.6rem;
-            }
-            .course-card {
-                padding: 1.25rem;
-            }
-        }
-        @media (max-width: 575.98px) {
-            .apply-cta-banner .cta-sub {
-                font-size: 0.9rem;
-            }
+            .page-hero h1 { font-size: 2rem; }
+            .page-hero .breadcrumb { justify-content: flex-start; margin-top: 1rem; }
+            .stats-ribbon .stat-number { font-size: 1.6rem; }
+            .cta-banner { padding: 1.8rem; }
+            .cta-banner h3 { font-size: 1.4rem; }
+            .step-item { flex-direction: column; align-items: center; text-align: center; }
         }
     </style>
 </head>
 
 <body>
-    <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border" style="width: 2.5rem; height: 2.5rem; color: var(--tenp-imperial) !important;" role="status">
+
+    <!-- ─── SPINNER ─── -->
+    <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" style="z-index:9999;">
+        <div class="spinner-border text-success" style="width: 2.5rem; height: 2.5rem;" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- Utility Bar -->
-    <div class="tsinghua-utility-bar text-white d-none d-lg-block">
-        <div class="container-fluid px-4 py-1 d-flex justify-content-between align-items-center">
-            <div class="small">
-                <span class="me-3"><i class="fa-regular fa-envelope me-1 text-warning"></i>info@eldoretpolytechnic.ac.ke</span>
-                <span class="me-3"><i class="fa-solid fa-phone me-1 text-warning"></i>+254 53 2062503</span>
-                <span><i class="fa-solid fa-location-dot me-1 text-warning"></i>Eldoret-Kisumu Road, Kenya</span>
-            </div>
+    <!-- ─── TOP UTILITY BAR (with Kenyan flag) ─── -->
+    <div class="top-bar d-none d-lg-block">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
             <div>
-                <span class="badge rounded-0 bg-transparent text-white border border-light border-opacity-25 px-2 py-1 text-uppercase fw-bold" style="font-size:0.6rem;">ISO 9001:2015 Certified</span>
+                <span class="me-3"><i class="fa-regular fa-envelope text-warning me-1"></i>info@tenp.ac.ke</span>
+                <span class="me-3"><i class="fa-solid fa-phone text-warning me-1"></i>+254 797 222 666</span>
+                <span><i class="fa-solid fa-location-dot text-warning me-1"></i>Eldoret-Kisumu Road, Kenya</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="kenya-flag-css me-2"></div>
+                <span class="badge bg-transparent border border-light border-opacity-25 text-white px-2 py-1 text-uppercase" style="font-size:0.6rem; font-weight:700;">ISO 9001:2015</span>
             </div>
         </div>
     </div>
 
-    <!-- Portal Gateways Bar -->
-    <div class="tsinghua-portal-gateways text-white-50 border-bottom border-dark">
-        <div class="container-fluid px-4 py-1 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-            <span class="small mb-1 mb-md-0 text-uppercase fw-semibold text-white" style="font-size:0.65rem;"><i class="fa-solid fa-link me-1 text-warning"></i>Direct Campus Gateways:</span>
-            <div class="d-flex flex-wrap gap-2 small">
+    <!-- ─── PORTAL GATEWAYS ─── -->
+    <div class="bg-dark text-white-50 border-bottom border-dark" style="font-size:0.75rem; background:#003619 !important;">
+        <div class="container-fluid px-4 py-1 d-flex flex-wrap justify-content-between align-items-center">
+            <span class="text-uppercase fw-semibold text-white" style="font-size:0.65rem;"><i class="fa-solid fa-link me-1 text-warning"></i>Direct Campus Gateways:</span>
+            <div class="d-flex gap-2">
                 <a href="https://eldopoly.ac.ke/eportal/" class="text-white text-decoration-none"><i class="fa-solid fa-graduation-cap me-1 text-warning"></i>Student Portal</a>
                 <span class="text-white-50">|</span>
                 <a href="/portal/staff-login/" class="text-white text-decoration-none"><i class="fa-solid fa-user-tie me-1" style="color: var(--tenp-gold);"></i>Staff Portal</a>
@@ -595,256 +570,382 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top premium-nav p-0 shadow-sm" id="mainNav">
+    <!-- ─── NAVBAR ─── -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top main-nav py-0">
         <div class="container-fluid px-4">
-            <a href="index.html" class="navbar-brand d-flex align-items-center">
-                <img class="img-fluid me-2" src="{% static 'img/logo.png' %}" alt="TENP" style="height: 42px; width: auto;">
+            <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+                <img src="{% static 'img/logo.jpeg' %}" alt="TENP Logo" class="me-2">
                 <div>
-                    <h4 class="m-0 institution-crest-text" style="font-size: 1.2rem;">TENP</h4>
-                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.55rem; letter-spacing: 0.5px;">Academia</span>
+                    <h4 class="m-0">TENP</h4>
+                    <small>Academia</small>
                 </div>
             </a>
-            <button type="button" class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-2 py-lg-0">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
-                        <div class="dropdown-menu">
-                            <a href="history.html" class="dropdown-item">Our History</a>
-                            <a href="philosophy.html" class="dropdown-item">Vision, Mission & Values</a>
-                            <a href="service_charter.html" class="dropdown-item">Service Charter</a>
-                            <a href="quality_policy.html" class="dropdown-item">Quality Policy</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Administration</a>
-                        <div class="dropdown-menu">
-                            <a href="{% url 'council' %}" class="dropdown-item">Governing Council</a>
-                            <a href="principal_office.html" class="dropdown-item">Principal's Office</a>
-                            <a href="deputy_principals.html" class="dropdown-item">Deputy Principals</a>
-                            <a href="finance_desk.html" class="dropdown-item">Finance Department</a>
-                            <a href="certification_scheme.html" class="dropdown-item">Service Certification</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
-                        <div class="dropdown-menu">
-                            <a href="courses_advert.html" class="dropdown-item fw-bold" style="color: var(--tenp-imperial) !important;"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Brochure</a>
-                            <hr class="dropdown-divider my-1">
-                            <a href="{% url 'higher_diploma' %}" class="dropdown-item">Higher Diploma</a>
-                            <a href="{% url 'diploma' %}" class="dropdown-item">Diploma & Certificate</a>
-                            <a href="{% url 'artisan' %}" class="dropdown-item active">Artisan & Short Courses</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Academics</a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#">Departments</a>
-                                <div class="dropdown-menu">
-                                    <a href="dept_cs.html" class="dropdown-item">Computer Studies</a>
-                                    <a href="dept_eng_civil.html" class="dropdown-item">Civil Engineering</a>
-                                    <a href="dept_eng_electrical.html" class="dropdown-item">Electrical Eng.</a>
-                                    <a href="dept_eng_mechanical.html" class="dropdown-item">Mechanical Eng.</a>
-                                    <a href="dept_medical.html" class="dropdown-item">Medical Sciences</a>
-                                    <a href="dept_applied.html" class="dropdown-item">Applied Sciences</a>
-                                    <a href="dept_biz.html" class="dropdown-item">Business Studies</a>
-                                    <a href="dept_agri.html" class="dropdown-item">Agriculture</a>
-                                </div>
-                            </div>
-                            <a href="examinations.html" class="dropdown-item">Examinations Office</a>
-                            <a href="library.html" class="dropdown-item">Digital Library</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-signature me-1"></i>Admissions</a>
-                        <div class="dropdown-menu">
-                            <a href="https://tenp.ac.ke/pages/admission.php" class="dropdown-item" target="_blank"><i class="fa-solid fa-download me-2"></i>Admission Letters</a>
-                            <a href="apply_online.html" class="dropdown-item"><i class="fa-solid fa-pen-to-square me-2"></i>Online Application</a>
-                            <a href="kuccps_placement.html" class="dropdown-item">KUCCPS Placement</a>
-                            <a href="fees.html" class="dropdown-item">Fee Structures</a>
-                            <a href="helb_funding.html" class="dropdown-item">HELB Funding</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
-                        <div class="dropdown-menu">
-                            <a href="ilona_institute.html" class="dropdown-item">Ilona Research Centre</a>
-                            <a href="research_innovation.html" class="dropdown-item">Research & Innovation</a>
-                            <a href="tvet_cdacc.html" class="dropdown-item">CBET Implementation</a>
-                            <a href="industrial_liaison.html" class="dropdown-item">Industry Liaison</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
-                </div>
-                <a href="/portal/student-login/" class="btn rounded-0 text-white text-uppercase fw-bold border-0 portal-entry-btn"><i class="fa-solid fa-lock me-1 text-warning"></i>Portal Entry</a>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Our History</a></li>
+                            <li><a href="#" class="dropdown-item">Vision &amp; Mission</a></li>
+                            <li><a href="#" class="dropdown-item">Service Charter</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">Administration</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'council' %}" class="dropdown-item">Governing Council</a></li>
+                            <li><a href="#" class="dropdown-item">Principal's Office</a></li>
+                            <li><a href="#" class="dropdown-item">Deputy Principals</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown">Courses</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="courses_advert.html" class="dropdown-item fw-bold" style="color:var(--tenp-green);"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Brochure</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="{% url 'higher_diploma' %}" class="dropdown-item">Higher Diploma</a></li>
+                            <li><a href="{% url 'diploma' %}" class="dropdown-item">Diploma &amp; Certificate</a></li>
+                            <li><a href="{% url 'artisan' %}" class="dropdown-item active">Artisan &amp; Short</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="academicsDropdown" role="button" data-bs-toggle="dropdown">Academics</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Departments</a></li>
+                            <li><a href="#" class="dropdown-item">Examinations</a></li>
+                            <li><a href="#" class="dropdown-item">Digital Library</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown"><i class="fa-solid fa-signature me-1"></i>Admissions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://tenp.ac.ke/pages/admission.php" class="dropdown-item" target="_blank"><i class="fa-solid fa-download me-2"></i>Admission Letters</a></li>
+                            <li><a href="#" class="dropdown-item"><i class="fa-solid fa-pen-to-square me-2"></i>Online Application</a></li>
+                            <li><a href="#" class="dropdown-item">KUCCPS Placement</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'Contact' %}" class="nav-link">Contact</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ─── HERO / PAGE HEADER ─── -->
-    <div class="courses-hero-divider">
+    <!-- ─── HERO ─── -->
+    <section class="page-hero">
         <div class="container px-4">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h1 class="text-white">Artisan &amp; Short <span style="color: var(--tenp-gold);">Courses</span></h1>
-                    <p class="text-white-50 mb-0" style="font-size:1.05rem; max-width:560px;">
-                        Hands‑on practical training and short‑term upskilling programmes designed for immediate employability and career advancement.
-                    </p>
+                    <h1>Artisan &amp; Short <span>Courses</span></h1>
+                    <p>Hands‑on practical training and short‑term upskilling programmes designed for immediate employability and career advancement.</p>
                 </div>
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-md-end mb-0" style="background:transparent; padding:0;">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Courses</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Artisan & Short</li>
+                            <li class="breadcrumb-item active" aria-current="page">Artisan &amp; Short</li>
                         </ol>
                     </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── STATS RIBBON ─── -->
+    <div class="stats-ribbon">
+        <div class="container px-4">
+            <div class="row text-center">
+                <div class="col-4 col-md-3">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Programmes</div>
+                </div>
+                <div class="col-4 col-md-3">
+                    <div class="stat-number">3–6 mo</div>
+                    <div class="stat-label">Duration</div>
+                </div>
+                <div class="col-4 col-md-3">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Practical Training</div>
+                </div>
+                <div class="col-4 col-md-3 d-none d-md-block">
+                    <div class="stat-number">★</div>
+                    <div class="stat-label">TVET CDACC Accredited</div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ─── COURSE GRID ─── -->
-    <section class="container px-4 py-5">
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <span class="section-badge"><i class="fa-regular fa-gem me-2"></i>Practical Skills Portfolio</span>
-                <h2 class="section-headline mt-2">Our <span>Artisan &amp; Short</span> Offerings</h2>
-                <p class="text-muted mx-auto" style="max-width:560px; font-size:0.95rem;">
-                    From trade skills to digital upskilling — find the right course to launch or elevate your career.
-                </p>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <!-- Artisan in Welding & Fabrication -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-fire"></i></div>
-                        <div>
-                            <div class="course-title">Artisan in Welding &amp; Fabrication</div>
-                            <div class="course-code">AWF-01</div>
-                        </div>
-                    </div>
-                    <p class="course-desc">Arc welding, MIG/TIG, metal cutting, and structural fabrication techniques.</p>
+    <section class="course-grid">
+        <div class="container px-4">
+            <div class="row mb-4 text-center">
+                <div class="col-12">
+                    <span class="section-badge"><i class="fa-regular fa-gem me-2"></i>Practical Skills Portfolio</span>
+                    <h2 class="section-title mt-2">Our <span>Artisan &amp; Short</span> Offerings</h2>
+                    <p class="text-muted mx-auto" style="max-width:560px;">From trade skills to digital upskilling — find the right course to launch or elevate your career.</p>
                 </div>
             </div>
-
-            <!-- Artisan in Carpentry & Joinery -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-hammer"></i></div>
-                        <div>
-                            <div class="course-title">Artisan in Carpentry &amp; Joinery</div>
-                            <div class="course-code">ACJ-02</div>
+            <div class="row g-4">
+                <!-- Artisan in Welding & Fabrication -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-fire"></i></div>
+                            <div>
+                                <div class="course-title">Artisan in Welding &amp; Fabrication</div>
+                                <div class="course-code">AWF-01</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Arc welding, MIG/TIG, metal cutting, and structural fabrication techniques.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 6 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Artisan</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">Woodworking, furniture making, roofing, and interior finishing.</p>
                 </div>
-            </div>
-
-            <!-- Artisan in Motor Vehicle Mechanics -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-car"></i></div>
-                        <div>
-                            <div class="course-title">Artisan in Motor Vehicle Mechanics</div>
-                            <div class="course-code">AMV-03</div>
+                <!-- Artisan in Carpentry & Joinery -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-hammer"></i></div>
+                            <div>
+                                <div class="course-title">Artisan in Carpentry &amp; Joinery</div>
+                                <div class="course-code">ACJ-02</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Woodworking, furniture making, roofing, and interior finishing.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 6 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Artisan</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">Engine diagnostics, transmission systems, brakes, and general vehicle maintenance.</p>
                 </div>
-            </div>
-
-            <!-- Artisan in Electrical Installation -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-plug"></i></div>
-                        <div>
-                            <div class="course-title">Artisan in Electrical Installation</div>
-                            <div class="course-code">AEI-04</div>
+                <!-- Artisan in Motor Vehicle Mechanics -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-car"></i></div>
+                            <div>
+                                <div class="course-title">Artisan in Motor Vehicle Mechanics</div>
+                                <div class="course-code">AMV-03</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Engine diagnostics, transmission systems, brakes, and general vehicle maintenance.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 6 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Artisan</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">Domestic wiring, circuit breakers, lighting systems, and safety regulations.</p>
                 </div>
-            </div>
-
-            <!-- Short Course: Computer Packages -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-desktop"></i></div>
-                        <div>
-                            <div class="course-title">Short Course: Computer Packages</div>
-                            <div class="course-code">SCP-05</div>
+                <!-- Artisan in Electrical Installation -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-plug"></i></div>
+                            <div>
+                                <div class="course-title">Artisan in Electrical Installation</div>
+                                <div class="course-code">AEI-04</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Domestic wiring, circuit breakers, lighting systems, and safety regulations.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 6 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Artisan</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">Microsoft Office, internet basics, email, and introductory computing skills.</p>
                 </div>
-            </div>
-
-            <!-- Short Course: Digital Marketing -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-bullhorn"></i></div>
-                        <div>
-                            <div class="course-title">Short Course: Digital Marketing</div>
-                            <div class="course-code">SDM-06</div>
+                <!-- Short Course: Computer Packages -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-desktop"></i></div>
+                            <div>
+                                <div class="course-title">Short Course: Computer Packages</div>
+                                <div class="course-code">SCP-05</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Microsoft Office, internet basics, email, and introductory computing skills.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 3 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Short Course</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">Social media management, SEO, content creation, and Google Analytics.</p>
                 </div>
-            </div>
-
-            <!-- Short Course: First Aid & Safety -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-heart"></i></div>
-                        <div>
-                            <div class="course-title">Short Course: First Aid &amp; Safety</div>
-                            <div class="course-code">SFS-07</div>
+                <!-- Short Course: Digital Marketing -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-bullhorn"></i></div>
+                            <div>
+                                <div class="course-title">Short Course: Digital Marketing</div>
+                                <div class="course-code">SDM-06</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Social media management, SEO, content creation, and Google Analytics.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 3 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Short Course</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">CPR, wound care, emergency response, and workplace safety protocols.</p>
                 </div>
-            </div>
-
-            <!-- Short Course: Fashion & Design -->
-            <div class="col-lg-3 col-md-6">
-                <div class="course-card d-flex flex-column">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-scissors"></i></div>
-                        <div>
-                            <div class="course-title">Short Course: Fashion &amp; Design</div>
-                            <div class="course-code">SFD-08</div>
+                <!-- Short Course: First Aid & Safety -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-heart"></i></div>
+                            <div>
+                                <div class="course-title">Short Course: First Aid &amp; Safety</div>
+                                <div class="course-code">SFS-07</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">CPR, wound care, emergency response, and workplace safety protocols.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 3 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Short Course</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
                         </div>
                     </div>
-                    <p class="course-desc">Garment construction, pattern drafting, textile selection, and fashion illustration.</p>
+                </div>
+                <!-- Short Course: Fashion & Design -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-card-modern d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="card-icon me-3"><i class="fa-solid fa-scissors"></i></div>
+                            <div>
+                                <div class="course-title">Short Course: Fashion &amp; Design</div>
+                                <div class="course-code">SFD-08</div>
+                            </div>
+                        </div>
+                        <p class="course-desc">Garment construction, pattern drafting, textile selection, and fashion illustration.</p>
+                        <div class="course-meta">
+                            <span><i class="fa-regular fa-clock"></i> 3 mo</span>
+                            <span><i class="fa-regular fa-user"></i> Short Course</span>
+                        </div>
+                        <div class="mt-auto pt-2">
+                            <a href="#" class="btn btn-outline-tenp btn-sm">Learn More →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── CALL-TO-ACTION BANNER ─── -->
+    <!-- ─── WHY CHOOSE ─── -->
+    <section class="why-section">
+        <div class="container px-4">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <span class="section-badge"><i class="fa-regular fa-star me-2"></i>Why TENP</span>
+                    <h2 class="section-title mt-2">Build Practical Skills with <span>Artisan &amp; Short</span> Courses</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="why-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <h5>Hands‑On Training</h5>
+                        <p>Learn by doing in our well‑equipped workshops and labs that simulate real work environments.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="why-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <h5>Flexible Short Durations</h5>
+                        <p>Courses range from 3 to 6 months, allowing you to upskill quickly without long‑term commitments.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="why-card">
+                        <i class="fa-solid fa-certificate"></i>
+                        <h5>Industry‑Recognised Certification</h5>
+                        <p>Earn credentials that are valued by employers and accredited by TVET CDACC.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── APPLICATION STEPS ─── -->
+    <section class="steps-section">
+        <div class="container px-4">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <span class="section-badge"><i class="fa-regular fa-pen-to-square me-2"></i>How to Apply</span>
+                    <h2 class="section-title mt-2">Your Journey Starts <span>Here</span></h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="step-item">
+                        <span class="step-number">1</span>
+                        <div>
+                            <h6>Choose Your Course</h6>
+                            <p>Browse the list above and select the course that matches your goals.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="step-item">
+                        <span class="step-number">2</span>
+                        <div>
+                            <h6>Gather Documents</h6>
+                            <p>Prepare your ID, academic certificates, and passport‑size photo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="step-item">
+                        <span class="step-number">3</span>
+                        <div>
+                            <h6>Apply Online</h6>
+                            <p>Complete the application form and upload your documents securely.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="step-item">
+                        <span class="step-number">4</span>
+                        <div>
+                            <h6>Await Confirmation</h6>
+                            <p>You’ll receive an admission decision within 5–7 working days.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CTA BANNER ─── -->
     <section class="container px-4 pb-5">
-        <div class="apply-cta-banner">
+        <div class="cta-banner">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
-                    <div class="cta-title">Ready to <span style="color: var(--tenp-gold);">Build</span> Your Skills?</div>
-                    <p class="cta-sub mb-0">
-                        Take the next step in your career. Apply online for any of our Artisan or Short Courses and gain practical, industry‑relevant skills.
-                    </p>
+                    <h3>Ready to <span>Build</span> Your Skills?</h3>
+                    <p>Take the next step in your career. Apply online for any of our Artisan or Short Courses and gain practical, industry‑relevant skills.</p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <a href="https://www.tenp.ac.ke/application/" target="_blank" class="btn-apply-gold">
@@ -861,70 +962,80 @@
         </div>
     </section>
 
-    <!-- ─── GREEN FOOTER ─── -->
-    <footer class="tsinghua-footer container-fluid px-5 pt-5 pb-4">
-        <div class="row g-5 py-2">
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-white"><i class="fa-solid fa-building-columns me-2 text-warning"></i>TENP Gateway</h5>
-                <p class="small pe-lg-3" style="line-height:1.6;">Pioneering state-level TVET frameworks to foster technical training excellence, industrial innovation, and globally competitive workforce engineering.</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5>Quick Navigation</h5>
-                <ul class="list-unstyled d-flex flex-column gap-2 small">
-                    <li><a href="about.html" class="footer-link">&raquo; About Our Institution</a></li>
-                    <li><a href="contact.html" class="footer-link">&raquo; Contact Desk</a></li>
-                    <li><a href="fees.html" class="footer-link">&raquo; Fee Structures Matrix</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5>Gateways</h5>
-                <ul class="list-unstyled d-flex flex-column gap-2 small">
-                    <li><a href="https://eldopoly.ac.ke/eportal/" class="footer-link">&raquo; Student Portal Access</a></li>
-                    <li><a href="/portal/staff-login/" class="footer-link">&raquo; Academic Staff Intranet</a></li>
-                    <li><a href="apply_online.html" class="footer-link">&raquo; Online Application Registry</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5>Communications Desk</h5>
-                <p class="small mb-2"><i class="fa-solid fa-map-marker-alt me-2 text-warning"></i>Eldoret-Kisumu Road, Eldoret, Kenya</p>
-                <p class="small mb-3"><i class="fa-solid fa-envelope me-2 text-warning"></i>info@eldoretpolytechnic.ac.ke</p>
-                <div class="d-flex gap-2">
-                    <a href="#" class="btn btn-sm btn-outline-light rounded-0 border-0 px-3 text-white" style="background: rgba(255,255,255,0.08);"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="btn btn-sm btn-outline-light rounded-0 border-0 px-3 text-white" style="background: rgba(255,255,255,0.08);"><i class="fab fa-facebook-f"></i></a>
+    <!-- ─── ACCREDITATION ─── -->
+    <section class="accreditation">
+        <div class="container px-4">
+            <div class="row align-items-center justify-content-center text-center g-3">
+                <div class="col-6 col-md-auto">
+                    <span class="text-muted small text-uppercase fw-bold">Accredited By</span>
                 </div>
+                <div class="col-4 col-md-2"><img src="{% static 'img/tveta.png' %}" alt="TVETA" class="img-fluid"></div>
+                <div class="col-4 col-md-2"><img src="{% static 'img/knec.png' %}" alt="KNEC" class="img-fluid"></div>
+                <div class="col-4 col-md-2"><img src="{% static 'img/cdacc.png' %}" alt="CDACC" class="img-fluid"></div>
+                <div class="col-4 col-md-2"><img src="{% static 'img/kuccps.png' %}" alt="KUCCPS" class="img-fluid"></div>
             </div>
         </div>
-        <div class="row border-top border-light border-opacity-25 pt-4 mt-4 align-items-center">
-            <div class="col-md-6 text-center text-md-start small text-white-50">
-                &copy; 2026 <span class="text-white fw-bold">The Eldoret National Polytechnic</span>. All Rights Reserved.
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer-tenp">
+        <div class="container px-4">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5><i class="fa-solid fa-building-columns me-2 text-warning"></i>TENP Gateway</h5>
+                    <p class="small" style="line-height:1.7;">Pioneering state-level TVET frameworks to foster technical training excellence, industrial innovation, and globally competitive workforce engineering.</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Quick Navigation</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-1 small">
+                        <li><a href="#" class="footer-link">&raquo; About Our Institution</a></li>
+                        <li><a href="#" class="footer-link">&raquo; Contact Desk</a></li>
+                        <li><a href="#" class="footer-link">&raquo; Fee Structures Matrix</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Gateways</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-1 small">
+                        <li><a href="https://eldopoly.ac.ke/eportal/" class="footer-link">&raquo; Student Portal Access</a></li>
+                        <li><a href="/portal/staff-login/" class="footer-link">&raquo; Academic Staff Intranet</a></li>
+                        <li><a href="#" class="footer-link">&raquo; Online Application Registry</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Communications Desk</h5>
+                    <p class="small mb-2"><i class="fa-solid fa-map-marker-alt me-2 text-warning"></i>Eldoret-Kisumu Road, Eldoret, Kenya</p>
+                    <p class="small mb-3"><i class="fa-solid fa-envelope me-2 text-warning"></i>info@eldoretpolytechnic.ac.ke</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 text-center text-md-end small text-white-50">
-                <a href="#" class="text-white-50 text-decoration-none me-3">Privacy Framework</a>
-                <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
+            <div class="footer-bottom row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 <span class="text-white fw-bold">The Eldoret National Polytechnic</span>. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- ─── SCRIPTS ─── -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var spinner = document.getElementById('spinner');
-            if (spinner) { spinner.classList.add('hide'); }
+            if (spinner) spinner.classList.add('d-none');
         });
         setTimeout(function() {
             var spinner = document.getElementById('spinner');
-            if (spinner && !spinner.classList.contains('hide')) { spinner.classList.add('hide'); }
-        }, 1500);
-
-        if (typeof WOW !== 'undefined') { new WOW().init(); }
+            if (spinner) spinner.classList.add('d-none');
+        }, 1000);
     </script>
 </body>
-
 </html>
