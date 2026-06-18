@@ -38,3 +38,9 @@ def council(request):
     return render(request, 'council.html')
 def Higher_diploma(request):
     return render(request, 'higher_diploma.html')
+def certificate(request):
+    return render(request, 'diploma.html')
+def diploma(request):
+    return render(request, 'diploma.html')
+def artisan(request):
+    return render(request, 'artisan.html')

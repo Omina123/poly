@@ -4,10 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>The Eldoret National Polytechnic | TENP Academic Gateway</title>
+    <title>The Eldoret National Polytechnic | TENP Artisan & Short Courses</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Eldoret National Polytechnic, TENP, TVET Kenya, Tsinghua Style Institutional Portal" name="keywords">
-    <meta content="Official digital campus portal and enterprise gateway for The Eldoret National Polytechnic." name="description">
+    <meta content="Eldoret National Polytechnic, TENP, TVET Kenya, Artisan, Short Courses" name="keywords">
+    <meta content="Explore our practical Artisan and Short Courses at The Eldoret National Polytechnic." name="description">
 
     <link href="{% static 'img/favicon.ico' %}" rel="icon">
 
@@ -25,6 +25,7 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
     <style>
+        /* ─── same styles as before ─── */
         :root {
             --tenp-imperial: #004B23;
             --tenp-marble: #FFFFFF;
@@ -45,11 +46,7 @@
             letter-spacing: -0.01em;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        .academic-title {
+        h1, h2, h3, h4, .academic-title {
             font-weight: 700;
             letter-spacing: -0.01em;
         }
@@ -92,7 +89,6 @@
             color: var(--tenp-gold) !important;
         }
 
-        /* COMPACT NAVBAR */
         .premium-nav {
             border-bottom: 3px solid var(--tenp-gold);
             background: rgba(255, 255, 255, 0.98) !important;
@@ -213,14 +209,8 @@
         }
 
         @keyframes fadeSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-5px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .portal-entry-btn {
@@ -293,7 +283,6 @@
             max-width: 600px;
         }
 
-        /* News Ticker */
         .ticker-bar {
             background: var(--tenp-dark-slate);
             color: var(--tenp-marble);
@@ -317,12 +306,8 @@
             animation: moveTicker 30s linear infinite;
         }
         @keyframes moveTicker {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-            100% {
-                transform: translate3d(-100%, 0, 0);
-            }
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
         .ticker-text-moving span {
             display: inline-block;
@@ -330,7 +315,7 @@
             font-size: 0.85rem;
         }
 
-        /* ─── COURSES SECTION — REDESIGNED ─── */
+        /* ─── courses page header ─── */
         .courses-hero-divider {
             background: linear-gradient(135deg, var(--tenp-imperial) 0%, #002b15 100%);
             padding: 3rem 0 2.5rem;
@@ -363,6 +348,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        /* ─── course cards ─── */
         .course-card {
             background: var(--tenp-marble);
             border-radius: 0;
@@ -432,7 +418,7 @@
             margin-bottom: 0;
         }
 
-        /* CTA Banner — the "Apply Now" link in a beautiful card */
+        /* ─── CTA banner ─── */
         .apply-cta-banner {
             background: linear-gradient(135deg, var(--tenp-imperial) 0%, #002b15 100%);
             border-left: 6px solid var(--tenp-gold);
@@ -494,7 +480,6 @@
             transform: translateX(6px);
         }
 
-        /* Course grid section header */
         .section-badge {
             display: inline-block;
             background: rgba(0, 75, 35, 0.08);
@@ -517,7 +502,7 @@
 
         /* ─── GREEN FOOTER ─── */
         .tsinghua-footer {
-            background-color: #003619 !important;  /* deep green */
+            background-color: #003619 !important;
             color: #d1d5db;
             font-size: 0.85rem;
         }
@@ -545,7 +530,6 @@
             color: #b0b8c1 !important;
         }
 
-        /* Responsive tweaks */
         @media (max-width: 767.98px) {
             .courses-hero-divider h1 {
                 font-size: 1.8rem;
@@ -611,7 +595,7 @@
         </div>
     </div>
 
-    <!-- COMPACT NAVBAR -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top premium-nav p-0 shadow-sm" id="mainNav">
         <div class="container-fluid px-4">
             <a href="index.html" class="navbar-brand d-flex align-items-center">
@@ -626,8 +610,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-2 py-lg-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-
+                    <a href="index.html" class="nav-item nav-link">Home</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
                         <div class="dropdown-menu">
@@ -637,7 +620,6 @@
                             <a href="quality_policy.html" class="dropdown-item">Quality Policy</a>
                         </div>
                     </div>
-
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Administration</a>
                         <div class="dropdown-menu">
@@ -648,19 +630,16 @@
                             <a href="certification_scheme.html" class="dropdown-item">Service Certification</a>
                         </div>
                     </div>
-
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
                         <div class="dropdown-menu">
                             <a href="courses_advert.html" class="dropdown-item fw-bold" style="color: var(--tenp-imperial) !important;"><i class="fa-solid fa-file-arrow-down me-2"></i>Download Brochure</a>
                             <hr class="dropdown-divider my-1">
-                            <a href="courses_higher_diploma.html" class="dropdown-item">Higher Diploma</a>
-                            <a href="courses_diploma.html" class="dropdown-item">Diploma Programs</a>
-                            <a href="courses_certificate.html" class="dropdown-item">Certificate Courses</a>
-                            <a href="courses_artisan.html" class="dropdown-item">Artisan & Short Courses</a>
+                            <a href="{% url 'higher_diploma' %}" class="dropdown-item">Higher Diploma</a>
+                            <a href="{% url 'diploma' %}" class="dropdown-item">Diploma & Certificate</a>
+                            <a href="{% url 'artisan' %}" class="dropdown-item active">Artisan & Short Courses</a>
                         </div>
                     </div>
-
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Academics</a>
                         <div class="dropdown-menu">
@@ -681,7 +660,6 @@
                             <a href="library.html" class="dropdown-item">Digital Library</a>
                         </div>
                     </div>
-
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-signature me-1"></i>Admissions</a>
                         <div class="dropdown-menu">
@@ -692,7 +670,6 @@
                             <a href="helb_funding.html" class="dropdown-item">HELB Funding</a>
                         </div>
                     </div>
-
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
                         <div class="dropdown-menu">
@@ -702,7 +679,6 @@
                             <a href="industrial_liaison.html" class="dropdown-item">Industry Liaison</a>
                         </div>
                     </div>
-
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
                 <a href="/portal/student-login/" class="btn rounded-0 text-white text-uppercase fw-bold border-0 portal-entry-btn"><i class="fa-solid fa-lock me-1 text-warning"></i>Portal Entry</a>
@@ -715,9 +691,9 @@
         <div class="container px-4">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h1 class="text-white">Higher Diploma <span style="color: var(--tenp-gold);">Programmes</span></h1>
+                    <h1 class="text-white">Artisan &amp; Short <span style="color: var(--tenp-gold);">Courses</span></h1>
                     <p class="text-white-50 mb-0" style="font-size:1.05rem; max-width:560px;">
-                        Advanced technical training for industry leadership — accredited by TVET CDACC &amp; KNEC.
+                        Hands‑on practical training and short‑term upskilling programmes designed for immediate employability and career advancement.
                     </p>
                 </div>
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
@@ -725,7 +701,7 @@
                         <ol class="breadcrumb justify-content-md-end mb-0" style="background:transparent; padding:0;">
                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Courses</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Higher Diploma</li>
+                            <li class="breadcrumb-item active" aria-current="page">Artisan & Short</li>
                         </ol>
                     </nav>
                 </div>
@@ -737,139 +713,137 @@
     <section class="container px-4 py-5">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <span class="section-badge"><i class="fa-regular fa-gem me-2"></i>Academic Portfolio</span>
-                <h2 class="section-headline mt-2">Explore Our <span>Higher Diploma</span> Offerings</h2>
+                <span class="section-badge"><i class="fa-regular fa-gem me-2"></i>Practical Skills Portfolio</span>
+                <h2 class="section-headline mt-2">Our <span>Artisan &amp; Short</span> Offerings</h2>
                 <p class="text-muted mx-auto" style="max-width:560px; font-size:0.95rem;">
-                    Industry-aligned programmes designed to equip you with advanced technical competencies
-                    and strategic problem-solving skills.
+                    From trade skills to digital upskilling — find the right course to launch or elevate your career.
                 </p>
             </div>
         </div>
 
         <div class="row g-4">
-            <!-- Course 1 -->
+            <!-- Artisan in Welding & Fabrication -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-laptop-code"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-fire"></i></div>
                         <div>
-                            <div class="course-title">Computer Science</div>
-                            <div class="course-code">HD-CS-01</div>
+                            <div class="course-title">Artisan in Welding &amp; Fabrication</div>
+                            <div class="course-code">AWF-01</div>
                         </div>
                     </div>
-                    <p class="course-desc">Advanced software engineering, AI, data science, and enterprise systems architecture.</p>
+                    <p class="course-desc">Arc welding, MIG/TIG, metal cutting, and structural fabrication techniques.</p>
                 </div>
             </div>
 
-            <!-- Course 2 -->
+            <!-- Artisan in Carpentry & Joinery -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-helmet-safety"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-hammer"></i></div>
                         <div>
-                            <div class="course-title">Civil Engineering</div>
-                            <div class="course-code">HD-CE-02</div>
+                            <div class="course-title">Artisan in Carpentry &amp; Joinery</div>
+                            <div class="course-code">ACJ-02</div>
                         </div>
                     </div>
-                    <p class="course-desc">Structural design, transportation engineering, water resources, and project management.</p>
+                    <p class="course-desc">Woodworking, furniture making, roofing, and interior finishing.</p>
                 </div>
             </div>
 
-            <!-- Course 3 -->
+            <!-- Artisan in Motor Vehicle Mechanics -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-car"></i></div>
                         <div>
-                            <div class="course-title">Electrical Engineering</div>
-                            <div class="course-code">HD-EE-03</div>
+                            <div class="course-title">Artisan in Motor Vehicle Mechanics</div>
+                            <div class="course-code">AMV-03</div>
                         </div>
                     </div>
-                    <p class="course-desc">Power systems, electronics, renewable energy, and industrial automation control.</p>
+                    <p class="course-desc">Engine diagnostics, transmission systems, brakes, and general vehicle maintenance.</p>
                 </div>
             </div>
 
-            <!-- Course 4 -->
+            <!-- Artisan in Electrical Installation -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-gears"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-plug"></i></div>
                         <div>
-                            <div class="course-title">Mechanical Engineering</div>
-                            <div class="course-code">HD-ME-04</div>
+                            <div class="course-title">Artisan in Electrical Installation</div>
+                            <div class="course-code">AEI-04</div>
                         </div>
                     </div>
-                    <p class="course-desc">Thermodynamics, manufacturing systems, robotics, and advanced materials science.</p>
+                    <p class="course-desc">Domestic wiring, circuit breakers, lighting systems, and safety regulations.</p>
                 </div>
             </div>
 
-            <!-- Course 5 -->
+            <!-- Short Course: Computer Packages -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-desktop"></i></div>
                         <div>
-                            <div class="course-title">Medical Sciences</div>
-                            <div class="course-code">HD-MS-05</div>
+                            <div class="course-title">Short Course: Computer Packages</div>
+                            <div class="course-code">SCP-05</div>
                         </div>
                     </div>
-                    <p class="course-desc">Biomedical technology, clinical diagnostics, public health, and healthcare systems.</p>
+                    <p class="course-desc">Microsoft Office, internet basics, email, and introductory computing skills.</p>
                 </div>
             </div>
 
-            <!-- Course 6 -->
+            <!-- Short Course: Digital Marketing -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-flask"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-bullhorn"></i></div>
                         <div>
-                            <div class="course-title">Applied Sciences</div>
-                            <div class="course-code">HD-AS-06</div>
+                            <div class="course-title">Short Course: Digital Marketing</div>
+                            <div class="course-code">SDM-06</div>
                         </div>
                     </div>
-                    <p class="course-desc">Chemistry, physics, microbiology, and industrial laboratory management.</p>
+                    <p class="course-desc">Social media management, SEO, content creation, and Google Analytics.</p>
                 </div>
             </div>
 
-            <!-- Course 7 -->
+            <!-- Short Course: First Aid & Safety -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-heart"></i></div>
                         <div>
-                            <div class="course-title">Business Studies</div>
-                            <div class="course-code">HD-BS-07</div>
+                            <div class="course-title">Short Course: First Aid &amp; Safety</div>
+                            <div class="course-code">SFS-07</div>
                         </div>
                     </div>
-                    <p class="course-desc">Strategic management, finance, entrepreneurship, and global business analytics.</p>
+                    <p class="course-desc">CPR, wound care, emergency response, and workplace safety protocols.</p>
                 </div>
             </div>
 
-            <!-- Course 8 -->
+            <!-- Short Course: Fashion & Design -->
             <div class="col-lg-3 col-md-6">
                 <div class="course-card d-flex flex-column">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="course-icon me-3"><i class="fa-solid fa-seedling"></i></div>
+                        <div class="course-icon me-3"><i class="fa-solid fa-scissors"></i></div>
                         <div>
-                            <div class="course-title">Agriculture</div>
-                            <div class="course-code">HD-AG-08</div>
+                            <div class="course-title">Short Course: Fashion &amp; Design</div>
+                            <div class="course-code">SFD-08</div>
                         </div>
                     </div>
-                    <p class="course-desc">Agribusiness, crop science, livestock production, and sustainable farming systems.</p>
+                    <p class="course-desc">Garment construction, pattern drafting, textile selection, and fashion illustration.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── CALL-TO-ACTION BANNER with the application link ─── -->
+    <!-- ─── CALL-TO-ACTION BANNER ─── -->
     <section class="container px-4 pb-5">
         <div class="apply-cta-banner">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
-                    <div class="cta-title">Ready to <span style="color: var(--tenp-gold);">Advance</span> Your Career?</div>
+                    <div class="cta-title">Ready to <span style="color: var(--tenp-gold);">Build</span> Your Skills?</div>
                     <p class="cta-sub mb-0">
-                        Take the next step toward professional excellence. Apply online for any of our Higher Diploma
-                        programmes and join a community of innovators and industry leaders.
+                        Take the next step in your career. Apply online for any of our Artisan or Short Courses and gain practical, industry‑relevant skills.
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
@@ -887,7 +861,7 @@
         </div>
     </section>
 
-    <!-- ─── GREEN FOOTER (UPDATED) ─── -->
+    <!-- ─── GREEN FOOTER ─── -->
     <footer class="tsinghua-footer container-fluid px-5 pt-5 pb-4">
         <div class="row g-5 py-2">
             <div class="col-lg-3 col-md-6">
@@ -931,23 +905,16 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-    </script>
-    <script src="{% static 'lib/wow/wow.min.js' %}">
-    </script>
-    <script src="{% static 'lib/easing/easing.min.js' %}">
-    </script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js' %}">
-    </script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}">
-    </script>
-    <script src="{% static 'js/main.js' %}">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var spinner = document.getElementById('spinner');
             if (spinner) { spinner.classList.add('hide'); }
         });

@@ -7,5 +7,10 @@ urlpatterns = [
         path('notice_notice/', create_notice, name='create_notice'),
         path('council/', council, name='council'),
         path('higher_diploma/', Higher_diploma, name='higher_diploma'),
+        path('diploma/', diploma, name='diploma'),
+        path('certif/', certificate, name='certificate'),
+        path('artisan/', artisan, name='artisan'),
+
+
 
 ]
