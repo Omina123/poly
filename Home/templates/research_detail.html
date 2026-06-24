@@ -1,0 +1,111 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="courses-hero-divider">
+    <div class="container px-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-white">{{ research.title }}</h1>
+                <p class="text-white-50 mb-0" style="font-size:1.05rem; max-width:560px;">
+                    {{ research.get_research_type_display }} • {{ research.get_status_display }}
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-md-end mb-0" style="background:transparent; padding:0;">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color: var(--tenp-gold);">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'research' %}" style="color: var(--tenp-gold);">Research</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="color: rgba(255,255,255,0.6);">{{ research.title|truncatechars:30 }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 py-5">
+    <div class="row g-4">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            <!-- Image -->
+            {% if research.image %}
+            <div class="mb-4">
+                <img src="{{ research.image.url }}" class="img-fluid" alt="{{ research.title }}" style="width:100%; object-fit:cover; max-height:500px;">
+            </div>
+            {% endif %}
+
+            <!-- Description -->
+            <h3 class="fw-bold mb-3">Description</h3>
+            <p class="text-muted" style="font-size:1.05rem; line-height:1.8;">{{ research.description }}</p>
+
+            <!-- Video -->
+            {% if research.video_url %}
+            <div class="mt-4">
+                <h4 class="fw-bold mb-3"><i class="fa-regular fa-circle-play me-2" style="color:var(--tenp-gold);"></i>Video</h4>
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ research.get_video_embed_url }}" 
+                            title="Research Video" 
+                            frameborder="0" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Document -->
+            {% if research.document %}
+            <div class="mt-4">
+                <h4 class="fw-bold mb-3"><i class="fa-regular fa-file-pdf me-2" style="color:var(--tenp-gold);"></i>Document</h4>
+                <a href="{{ research.document.url }}" target="_blank" class="btn" style="background-color: var(--tenp-imperial); color: white; border-radius:0;">
+                    <i class="fa-regular fa-download me-2"></i> Download Document
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="p-4 bg-light border-start border-4" style="border-color: var(--tenp-gold);">
+                <h5 class="fw-bold mb-3">Research Details</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <strong>Type:</strong><br>
+                        <span class="badge bg-dark rounded-0">{{ research.get_research_type_display }}</span>
+                    </li>
+                    <li class="mb-2">
+                        <strong>Status:</strong><br>
+                        <span class="badge rounded-0 {% if research.status == 'completed' or research.status == 'published' %}bg-success{% elif research.status == 'ongoing' %}bg-primary{% else %}bg-warning text-dark{% endif %}">
+                            {{ research.get_status_display }}
+                        </span>
+                    </li>
+                    {% if research.researchers %}
+                    <li class="mb-2">
+                        <strong>Researchers:</strong><br>
+                        <span>{{ research.researchers }}</span>
+                    </li>
+                    {% endif %}
+                    {% if research.year %}
+                    <li class="mb-2">
+                        <strong>Year:</strong><br>
+                        <span>{{ research.year }}</span>
+                    </li>
+                    {% endif %}
+                    <li class="mb-2">
+                        <strong>Added:</strong><br>
+                        <span>{{ research.created_at|date:"F d, Y" }}</span>
+                    </li>
+                </ul>
+
+                <div class="mt-3">
+                    <a href="{% url 'research' %}" class="btn btn-outline-secondary rounded-0" style="border-color: #dee2e6; color: #6c757d; width:100%;">
+                        <i class="fa-solid fa-arrow-left me-2"></i> Back to Research
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

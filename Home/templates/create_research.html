@@ -1,0 +1,114 @@
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="courses-hero-divider">
+    <div class="container px-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-white">Add Research <span style="color: var(--tenp-gold);">Item</span></h1>
+                <p class="text-white-50 mb-0" style="font-size:1.05rem; max-width:560px;">
+                    Share your research, innovation, or publication with the TENP community.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-md-end mb-0" style="background:transparent; padding:0;">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color: var(--tenp-gold);">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'research' %}" style="color: var(--tenp-gold);">Research</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="color: rgba(255,255,255,0.6);">Add New</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="p-4 bg-light border-start border-4" style="border-color: var(--tenp-gold);">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                    <div class="alert alert-danger rounded-0">
+                        <strong>Please correct the errors below.</strong>
+                    </div>
+                    {% endif %}
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="{{ form.title.id_for_label }}" class="form-label fw-bold">Title</label>
+                        {{ form.title }}
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="{{ form.description.id_for_label }}" class="form-label fw-bold">Description</label>
+                        {{ form.description }}
+                    </div>
+
+                    <!-- Research Type -->
+                    <div class="mb-3">
+                        <label for="{{ form.research_type.id_for_label }}" class="form-label fw-bold">Research Type</label>
+                        {{ form.research_type }}
+                    </div>
+
+                    <!-- Researchers -->
+                    <div class="mb-3">
+                        <label for="{{ form.researchers.id_for_label }}" class="form-label fw-bold">Researchers</label>
+                        {{ form.researchers }}
+                        <small class="text-muted">{{ form.researchers.help_text }}</small>
+                    </div>
+
+                    <!-- Year -->
+                    <div class="mb-3">
+                        <label for="{{ form.year.id_for_label }}" class="form-label fw-bold">Year</label>
+                        {{ form.year }}
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label for="{{ form.status.id_for_label }}" class="form-label fw-bold">Status</label>
+                        {{ form.status }}
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="mb-3">
+                        <label for="{{ form.image.id_for_label }}" class="form-label fw-bold">Image</label>
+                        {{ form.image }}
+                        <small class="text-muted">Upload a representative image for this research.</small>
+                    </div>
+
+                    <!-- Video URL -->
+                    <div class="mb-3">
+                        <label for="{{ form.video_url.id_for_label }}" class="form-label fw-bold">Video URL</label>
+                        {{ form.video_url }}
+                        <small class="text-muted">{{ form.video_url.help_text }}</small>
+                    </div>
+
+                    <!-- Document Upload -->
+                    <div class="mb-3">
+                        <label for="{{ form.document.id_for_label }}" class="form-label fw-bold">Document</label>
+                        {{ form.document }}
+                        <small class="text-muted">{{ form.document.help_text }}</small>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn" style="background-color: var(--tenp-imperial); color: white; border-radius:0; padding:0.6rem 2rem;">
+                            <i class="fa-solid fa-save me-2"></i> Save Research
+                        </button>
+                        <a href="{% url 'research' %}" class="btn btn-outline-secondary rounded-0" style="border-color: #dee2e6; color: #6c757d;">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends "HOME.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="courses-hero-divider">
+    <div class="container px-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-white">Research &amp; <span style="color: var(--tenp-gold);">Innovation</span></h1>
+                <p class="text-white-50 mb-0" style="font-size:1.05rem; max-width:560px;">
+                    Discover our cutting-edge research, innovations, and collaborations driving technological advancement.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-md-end mb-0" style="background:transparent; padding:0;">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color: var(--tenp-gold);">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="color: rgba(255,255,255,0.6);">Research</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Research Content -->
+<div class="container px-4 py-5">
+
+    <!-- Add Research Button (for staff) -->
+    {% if user.is_staff %}
+    <div class="text-end mb-4">
+        <a href="{% url 'create_research' %}" class="btn btn-sm" style="background-color: var(--tenp-imperial); color: white; border-radius:0; padding:0.5rem 1.5rem;">
+            <i class="fa-solid fa-plus-circle me-2"></i> Add Research Item
+        </a>
+    </div>
+    {% endif %}
+
+    <!-- Filter by Type -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="d-flex flex-wrap gap-2">
+                <a href="{% url 'research' %}" class="btn btn-sm {% if not request.GET.type %}btn-tenp-solid{% else %}btn-outline-tenp{% endif %}" 
+                   style="border-radius:0; {% if not request.GET.type %}background-color:var(--tenp-imperial);color:white;{% else %}border:1px solid var(--tenp-imperial);color:var(--tenp-imperial);{% endif %} padding:0.3rem 1.2rem; font-weight:600;">
+                    All
+                </a>
+                {% for type_code, type_label in research_types %}
+                <a href="?type={{ type_code }}" class="btn btn-sm {% if request.GET.type == type_code %}btn-tenp-solid{% else %}btn-outline-tenp{% endif %}"
+                   style="border-radius:0; {% if request.GET.type == type_code %}background-color:var(--tenp-imperial);color:white;{% else %}border:1px solid var(--tenp-imperial);color:var(--tenp-imperial);{% endif %} padding:0.3rem 1.2rem; font-weight:600;">
+                    {{ type_label }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Grid -->
+    {% if research_items %}
+    <div class="row g-4">
+        {% for item in research_items %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm" style="border-radius:0; transition: transform 0.3s;">
+                {% if item.image %}
+                <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}" style="height: 220px; object-fit: cover;">
+                {% else %}
+                <img src="{% static 'img/research-placeholder.jpg' %}" class="card-img-top" alt="Research" style="height: 220px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <span class="badge bg-dark rounded-0 mb-2" style="font-size:0.65rem; font-weight:600; width:fit-content;">
+                        {{ item.get_research_type_display }}
+                    </span>
+                    <h5 class="card-title fw-bold">{{ item.title }}</h5>
+                    <p class="card-text text-muted small">{{ item.description|truncatewords:25 }}</p>
+                    
+                    <!-- Researchers -->
+                    {% if item.researchers %}
+                    <p class="small text-muted mb-1">
+                        <i class="fa-regular fa-user me-1" style="color:var(--tenp-gold);"></i> {{ item.researchers }}
+                    </p>
+                    {% endif %}
+                    
+                    <!-- Year & Status -->
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        {% if item.year %}
+                        <small class="text-muted"><i class="fa-regular fa-calendar me-1" style="color:var(--tenp-gold);"></i> {{ item.year }}</small>
+                        {% endif %}
+                        <span class="badge rounded-0 {% if item.status == 'completed' or item.status == 'published' %}bg-success{% elif item.status == 'ongoing' %}bg-primary{% else %}bg-warning text-dark{% endif %}" style="font-size:0.6rem;">
+                            {{ item.get_status_display }}
+                        </span>
+                    </div>
+
+                    <!-- Media Indicators -->
+                    <div class="mt-2 d-flex gap-2">
+                        {% if item.image %}
+                        <span class="small text-muted"><i class="fa-regular fa-image"></i></span>
+                        {% endif %}
+                        {% if item.video_url %}
+                        <span class="small text-muted"><i class="fa-regular fa-circle-play"></i></span>
+                        {% endif %}
+                        {% if item.document %}
+                        <span class="small text-muted"><i class="fa-regular fa-file-pdf"></i></span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mt-3">
+                        <a href="{% url 'research_detail' item.id %}" class="btn btn-sm" style="background-color:var(--tenp-imperial); color:white; border-radius:0;">
+                            View Details <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fa-solid fa-microscope fa-4x text-muted mb-3"></i>
+        <h4 class="text-muted">No research items found</h4>
+        <p class="text-muted">Check back later for our latest research and innovations.</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Stats Section -->
+<div class="container-fluid px-5 py-5 bg-light border-top border-bottom">
+    <div class="row g-0 text-center">
+        <div class="col-lg-3 col-sm-6 py-4">
+            <div class="stat-number">{{ research_items.count }}</div>
+            <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Research Projects</div>
+        </div>
+        <div class="col-lg-3 col-sm-6 py-4">
+            <div class="stat-number">25+</div>
+            <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Publications</div>
+        </div>
+        <div class="col-lg-3 col-sm-6 py-4">
+            <div class="stat-number">15+</div>
+            <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Innovations</div>
+        </div>
+        <div class="col-lg-3 col-sm-6 py-4">
+            <div class="stat-number">10+</div>
+            <div class="text-muted text-uppercase fw-bold small mt-1" style="font-size:0.68rem; letter-spacing:1px;">Industry Partners</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stat-number {
+        font-size: 2.6rem;
+        font-weight: 800;
+        color: var(--tenp-imperial);
+        line-height: 1.1;
+    }
+    .btn-outline-tenp:hover {
+        background-color: var(--tenp-imperial);
+        color: white !important;
+    }
+    .btn-tenp-solid {
+        background-color: var(--tenp-imperial);
+        color: white !important;
+    }
+    .btn-tenp-solid:hover {
+        background-color: #003017;
+        color: white !important;
+    }
+</style>
+{% endblock %}

@@ -11,6 +11,9 @@ urlpatterns = [
         path('diploma/', diploma, name='diploma'),
         path('certif/', certificate, name='certificate'),
         path('artisan/', artisan, name='artisan'),
+        path('research/', research_view, name='research'),
+        path('research/create/', create_research, name='create_research'),
+        path('research/<int:pk>/', research_detail, name='research_detail'),
 
 
 

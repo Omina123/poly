@@ -560,13 +560,14 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Ilona Research Centre</a>
+                            <a href="{% url 'research' %}" class="dropdown-item">Cris Research Centre</a>
                             <a href="#" class="dropdown-item">Research & Innovation</a>
                             <a href="#" class="dropdown-item">CBET Implementation</a>
                             <a href="#" class="dropdown-item">Industry Liaison</a>
                         </div>
                     </div>
 
+                    <!-- ✅ Kept as 'Contact' (capital C) per your request -->
                     <a href="{% url 'Contact' %}" class="nav-item nav-link">Contact</a>
                 </div>
             </div>
@@ -708,8 +709,11 @@
                 {% for announcement in announcements %}
                     <span><strong>[{{ announcement.title|upper }}]</strong> {{ announcement.content }}</span>
                 {% empty %}
-                    <span><strong>[ADMISSIONS]</strong> Applications for the upcoming intake are currently being processed online. Apply today!</span>
-                    <span><strong>[EXAMINATIONS]</strong> The institutional examination timetables have been updated on both staff and student portals.</span>
+                    <!-- ✅ combined both fallback messages into one span -->
+                    <span>
+                        <strong>[ADMISSIONS]</strong> Applications for the upcoming intake are currently being processed online. Apply today! &nbsp;|&nbsp; 
+                        <strong>[EXAMINATIONS]</strong> The institutional examination timetables have been updated on both staff and student portals.
+                    </span>
                 {% endfor %}
             </div>
         </div>
@@ -727,6 +731,13 @@
                         <strong>{{ ann.title }}</strong>
                         <p class="text-muted small mb-0">{{ ann.content|truncatewords:20 }}</p>
                         <small class="text-muted">{{ ann.created_at|date:"M d, Y" }}</small>
+                        {% if ann.file_attachment %}
+                        <div class="mt-2">
+                            <a href="{{ ann.file_attachment.url }}" class="small fw-bold text-decoration-none" target="_blank" style="color: var(--tenp-imperial);">
+                                <i class="fa-regular fa-file-pdf me-1"></i> Download Attachment
+                            </a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -773,7 +784,9 @@
                                 <div class="d-flex justify-content-between align-items-center mt-2 border-top pt-2">
                                     <small class="text-muted" style="font-size: 0.72rem;"><i class="fa-regular fa-calendar me-1 text-warning"></i>{{ memo.created_at|date:"M d, Y" }}</small>
                                     {% if memo.file_attachment %}
-                                    <a href="{{ memo.file_attachment.url }}" class="small fw-bold text-decoration-none" target="_blank" style="font-size: 0.75rem; color: var(--tenp-imperial);">Download PDF &darr;</a>
+                                    <a href="{{ memo.file_attachment.url }}" class="small fw-bold text-decoration-none" target="_blank" style="font-size: 0.75rem; color: var(--tenp-imperial);">
+                                        <i class="fa-regular fa-file-pdf me-1"></i> Download PDF &darr;
+                                    </a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -803,6 +816,13 @@
                                 {% endif %}
                                 <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.92rem;">{{ post.title }}</h6>
                                 <p class="text-muted small mb-2">{{ post.content|truncatewords:18 }}</p>
+                                {% if post.file_attachment %}
+                                <div class="mt-2 border-top pt-1">
+                                    <a href="{{ post.file_attachment.url }}" class="small fw-bold text-decoration-none" target="_blank" style="color: var(--tenp-imperial); font-size:0.75rem;">
+                                        <i class="fa-regular fa-file-pdf me-1"></i> Download Attachment
+                                    </a>
+                                </div>
+                                {% endif %}
                             </div>
                             {% empty %}
                             <p class="text-muted small text-center py-4">No campus articles published recently.</p>
@@ -830,6 +850,13 @@
                                 {% endif %}
                                 <h6 class="fw-bold mb-1 text-dark" style="font-size: 0.92rem;">{{ banner.title }}</h6>
                                 <p class="text-muted small mb-0">{{ banner.content }}</p>
+                                {% if banner.file_attachment %}
+                                <div class="mt-1">
+                                    <a href="{{ banner.file_attachment.url }}" class="small fw-bold text-decoration-none" target="_blank" style="color: var(--tenp-imperial); font-size:0.75rem;">
+                                        <i class="fa-regular fa-file-pdf me-1"></i> Download Attachment
+                                    </a>
+                                </div>
+                                {% endif %}
                             </div>
                             {% empty %}
                             <div class="p-3 bg-white border-0 shadow-sm rounded-0" style="border-left: 3px solid var(--tenp-gold) !important;">
